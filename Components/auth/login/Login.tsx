@@ -59,7 +59,7 @@ const Login = ({ }: IProps) => {
                 )
 
                 toast.success(res.data.message, { position: 'top-center' })
-                setTimeout(() => { router.push('/') }, 1000)
+                setTimeout(() => { router.push('/movies') }, 1000)
 
             } else if (res.data.success == false) {
                 toast.error(res.data.errorMsg, { position: 'top-center' })
