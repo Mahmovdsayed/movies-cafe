@@ -132,9 +132,9 @@ const Recommendations = ({ }: Iprops) => {
                       className="w-[250px] relative"
                     >
                       <div className="z-20 absolute right-0 top-0 ">
-                        <FavButton slug={reco.id} type="tv" className=" rounded-none rounded-bl-md" title={reco.original_name} date={reco.first_air_date} imgUrl={`${reco.poster_path == null
+                        <FavButton slug={reco.id} type="tv" className=" rounded-none rounded-bl-md" title={reco.original_name} date={reco.first_air_date} imgUrl={`${reco.backdrop_path == null
                           ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                          : `https://image.tmdb.org/t/p/original${reco.poster_path}`
+                          : `https://image.tmdb.org/t/p/original${reco.backdrop_path}`
                           }`} />
                       </div>
 
