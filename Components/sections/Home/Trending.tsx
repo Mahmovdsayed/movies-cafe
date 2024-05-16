@@ -87,9 +87,9 @@ const Trending = ({ }: IProps) => {
                                         className="w-full md:w-[250px] relative"
                                     >
                                         <div className="z-20 absolute right-0 top-0 ">
-                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.poster_path == null
+                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.backdrop_path == null
                                                 ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                                                : `https://image.tmdb.org/t/p/original${mov.poster_path}`
+                                                : `https://image.tmdb.org/t/p/original${mov.backdrop_path}`
                                                 }`} />
                                         </div>
                                         <Image
@@ -142,9 +142,9 @@ const Trending = ({ }: IProps) => {
                                         className="w-full md:w-[250px] relative"
                                     >
                                         <div className="z-20 absolute right-0 top-0 ">
-                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.poster_path == null
+                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.backdrop_path == null
                                                 ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                                                : `https://image.tmdb.org/t/p/original${mov.poster_path}`
+                                                : `https://image.tmdb.org/t/p/original${mov.backdrop_path}`
                                                 }`} />
                                         </div>
                                         <Image
@@ -197,9 +197,9 @@ const Trending = ({ }: IProps) => {
                                         className="w-full md:w-[250px] relative"
                                     >
                                         <div className="z-20 absolute right-0 top-0 ">
-                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.poster_path == null
+                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.backdrop_path == null
                                                 ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                                                : `https://image.tmdb.org/t/p/original${mov.poster_path}`
+                                                : `https://image.tmdb.org/t/p/original${mov.backdrop_path}`
                                                 }`} />
                                         </div>
                                         <Image
@@ -252,9 +252,9 @@ const Trending = ({ }: IProps) => {
                                         className="w-full md:w-[250px] relative"
                                     >
                                         <div className="z-20 absolute right-0 top-0 ">
-                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.poster_path == null
+                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.backdrop_path == null
                                                 ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                                                : `https://image.tmdb.org/t/p/original${mov.poster_path}`
+                                                : `https://image.tmdb.org/t/p/original${mov.backdrop_path}`
                                                 }`} />
                                         </div>
                                         <Image
@@ -307,9 +307,9 @@ const Trending = ({ }: IProps) => {
                                         className="w-full md:w-[250px] relative"
                                     >
                                         <div className="z-20 absolute right-0 top-0 ">
-                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.poster_path == null
+                                            <FavButton slug={mov.id} type="movie" className=" rounded-none rounded-bl-md" title={mov.original_title} date={mov.first_air_date} imgUrl={`${mov.backdrop_path == null
                                                 ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                                                : `https://image.tmdb.org/t/p/original${mov.poster_path}`
+                                                : `https://image.tmdb.org/t/p/original${mov.backdrop_path}`
                                                 }`} />
                                         </div>
                                         <Image
