@@ -62,6 +62,7 @@ const CreateNewAccount = ({ }: IProps) => {
             .string()
             .lowercase("username must be in lowercase")
             .min(3, "username minlength is 3")
+            .matches(/^\S*$/, "username must not contain spaces")
             .max(20, "username maxlength is 20")
             .required("username is required"),
         email: yup.string().lowercase("email must be in lowercase").email("email is invalid").required("email is required"),
