@@ -22,7 +22,7 @@ const Footer = ({}: IProps) => {
               <FaFacebookF />
             </Button>
             <Button
-              href={`https://www.instagram.com/dopamine.app`}
+              href={`https://instagram.com/nest.dev`}
               size="sm"
               radius="sm"
               isIconOnly
@@ -58,7 +58,7 @@ const Footer = ({}: IProps) => {
               © 2024{" "}
               <span
                 onClick={() =>
-                  (window.location.href = "https://www.instagram.com/dopamine.app")
+                  (window.location.href = "https://instagram.com/nest.dev")
                 }
                 className="font-bold cursor-pointer"
               >
