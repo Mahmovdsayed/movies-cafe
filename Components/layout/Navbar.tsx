@@ -79,12 +79,7 @@ export default function Nav() {
                 onClick={() => router.push(`/`)}
                 className="font-bold text-inherit cursor-pointer"
               >
-                <Image
-                  radius="none"
-                  className="w-[200px]"
-                  src="https://see.fontimg.com/api/renderfont4/GOLVG/eyJyIjoiZnMiLCJoIjo3NiwidyI6MTAwMCwiZnMiOjc2LCJmZ2MiOiIjN0YyMEM3IiwiYmdjIjoiIzBBMDIwMiIsInQiOjF9/bW92aWVzIGNhZmU/kocak.png"
-                />
-
+               MOVIES CAFE
               </p>
             </NavbarBrand>
           </NavbarContent>
