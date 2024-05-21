@@ -230,7 +230,7 @@ export default function Nav() {
           </NavbarContent>
 
           <NavbarContent as="div" justify="end">
-            <Dropdown backdrop="transparent" shadow="lg" placement="bottom-end">
+            <Dropdown backdrop="blur" shadow="lg" placement="bottom-end">
               <DropdownTrigger>
                 <Avatar
                   isBordered
