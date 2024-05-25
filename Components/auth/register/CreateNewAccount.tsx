@@ -8,7 +8,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Bars } from "react-loader-spinner";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import { Button, Input,Image, Select, SelectItem } from "@nextui-org/react";
 import { MdEmail } from "react-icons/md";
 import { FaAt } from "react-icons/fa6";
 import { FaUserTie } from "react-icons/fa";
@@ -106,162 +106,168 @@ const CreateNewAccount = ({ }: IProps) => {
         onSubmit: submitRegister,
     });
     return <>
-        <div className="container mx-auto text-center px-4">
-            <h1 className="my-4 text-2xl md:text-3xl font-semibold">Register Now</h1>
-            <div className="">
-                <form onSubmit={formik.handleSubmit}>
-                    <Input
-                        className=" my-2 lowercase"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        value={formik.values.username}
-                        label="Username"
-                        startContent={<FaAt />}
-                        type="text"
-                        placeholder="enter your username"
-                        id="username"
-                        name="username"
-                    />
-                    {formik.errors.username && formik.touched.username ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.username}
-                        </div>
-                    ) : (
-                        ""
-                    )}
+       <div className="container mx-auto md:flex md:items-center md:justify-center my-6 p-6">
+            <div className=" hidden md:flex w-1/2 ">
+                <div className="relative">
+                    <Image translate="yes" isBlurred className="w-3/4 m-auto object-cover object-center" removeWrapper src="https://image.tmdb.org/t/p/original/AoK5iRup1fvbVNfI1mzGqX82igv.jpg" />
 
-                    <Input
-                        className=" my-2 lowercase"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        startContent={<MdEmail />}
-                        label="Email"
-                        type="email"
-                        placeholder="enter your email"
-                        id="email"
-                        name="email"
-                    />
-                    {formik.errors.email && formik.touched.email ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.email}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    <Input
-                        className=" my-2 lowercase"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        startContent={<FaUserTie />}
-                        value={formik.values.firstName}
-                        label="First Name"
-                        type="text"
-
-                        placeholder="enter your First Name"
-                        id="firstName"
-                        name="firstName"
-                    />
-                    {formik.errors.firstName && formik.touched.firstName ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.firstName}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    <Input
-                        className=" my-2 lowercase"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        value={formik.values.secondName}
-                        startContent={<HiMiniUsers />}
-                        label="Second Name"
-                        type="text"
-                        placeholder="enter your Second Name"
-                        id="secondName"
-                        name="secondName"
-                    />
-                    {formik.errors.secondName && formik.touched.secondName ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.secondName}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-
-
-                    <Input
-                        className=" my-2 "
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        label="Password"
-                        type="password"
-                        startContent={<RiLockPasswordFill />}
-                        placeholder="Password"
-                        id="password"
-                        name="password"
-                    />
-                    {formik.errors.password && formik.touched.password ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.password}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    <Input
-                        className=" my-2"
-                        onBlur={formik.handleBlur}
-                        onChange={formik.handleChange}
-                        value={formik.values.cpass}
-                        startContent={<PiPasswordFill />}
-                        label="Confirm Password"
-                        type="password"
-                        placeholder="confirm your password"
-                        id="cpass"
-                        name="cpass"
-                    />
-                    {formik.errors.cpass && formik.touched.cpass ? (
-                        <div className="text-red-400 text-tiny p-1 ">
-                            {formik.errors.cpass}
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    {isLoading ? (
-                        <button
-                            className="mt-3" type="button">
-                            <Bars
-                                height="20"
-                                width="100"
-                                color="#fff"
-                                ariaLabel="bars-loading"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                            />
-                        </button>
-                    ) : (
-                        <Button
-                            radius="sm"
-                            size="sm"
-                            startContent={<IoLogIn />}
-                             isDisabled={!(formik.isValid && formik.dirty)}
-                            type="submit"
-                            className="mt-3 bg-indigo-500 text-white p-2 text-sm  w-full lg:w-min"
-                        >
-                            Register Now
-                        </Button>
-                    )}
-                    <Link
-                        className=" mt-3 block text-sm"
-                        href={'/login'}
-                    >
-                        Have an account already? <span className="font-bold text-pink-400">Log in</span>
-                    </Link>
-                </form>
+                </div>
             </div>
+            <div className="md:w-1/2 p-4 text-center">
+                <h1 className="my-4 text-2xl md:text-3xl font-semibold">Register Now</h1>
+                <div className="">
+                    <form onSubmit={formik.handleSubmit}>
+                        <Input
+                            className=" my-2 lowercase"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.username}
+                            label="Username"
+                            startContent={<FaAt />}
+                            type="text"
+                            placeholder="enter your username"
+                            id="username"
+                            name="username"
+                        />
+                        {formik.errors.username && formik.touched.username ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.username}
+                            </div>
+                        ) : (
+                            ""
+                        )}
 
+                        <Input
+                            className=" my-2 lowercase"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.email}
+                            startContent={<MdEmail />}
+                            label="Email"
+                            type="email"
+                            placeholder="enter your email"
+                            id="email"
+                            name="email"
+                        />
+                        {formik.errors.email && formik.touched.email ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.email}
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        <Input
+                            className=" my-2 lowercase"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            startContent={<FaUserTie />}
+                            value={formik.values.firstName}
+                            label="First Name"
+                            type="text"
+
+                            placeholder="enter your First Name"
+                            id="firstName"
+                            name="firstName"
+                        />
+                        {formik.errors.firstName && formik.touched.firstName ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.firstName}
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        <Input
+                            className=" my-2 lowercase"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.secondName}
+                            startContent={<HiMiniUsers />}
+                            label="Second Name"
+                            type="text"
+                            placeholder="enter your Second Name"
+                            id="secondName"
+                            name="secondName"
+                        />
+                        {formik.errors.secondName && formik.touched.secondName ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.secondName}
+                            </div>
+                        ) : (
+                            ""
+                        )}
+
+
+                        <Input
+                            className=" my-2 "
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                            label="Password"
+                            type="password"
+                            startContent={<RiLockPasswordFill />}
+                            placeholder="Password"
+                            id="password"
+                            name="password"
+                        />
+                        {formik.errors.password && formik.touched.password ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.password}
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        <Input
+                            className=" my-2"
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.cpass}
+                            startContent={<PiPasswordFill />}
+                            label="Confirm Password"
+                            type="password"
+                            placeholder="confirm your password"
+                            id="cpass"
+                            name="cpass"
+                        />
+                        {formik.errors.cpass && formik.touched.cpass ? (
+                            <div className="text-red-400 text-tiny p-1 ">
+                                {formik.errors.cpass}
+                            </div>
+                        ) : (
+                            ""
+                        )}
+                        {isLoading ? (
+                            <button
+                                className="mt-3" type="button">
+                                <Bars
+                                    height="20"
+                                    width="100"
+                                    color="#fff"
+                                    ariaLabel="bars-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    visible={true}
+                                />
+                            </button>
+                        ) : (
+                            <Button
+                                radius="sm"
+                                size="sm"
+                                startContent={<IoLogIn />}
+                                type="submit"
+                                className="mt-3 dark:bg-white bg-black text-white font-medium dark:text-black p-2 text-sm rounded-lg w-full "
+                            >
+                                Register Now
+                            </Button>
+                        )}
+                        <Link
+                            className=" mt-3 block text-sm"
+                            href={'/login'}
+                        >
+                            Have an account already? <span className="font-bold text-pink-400">Log in</span>
+                        </Link>
+                    </form>
+                </div>
+            </div>
         </div>
     </>;
 };
