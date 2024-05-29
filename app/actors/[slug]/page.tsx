@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const id = params.slug;
-  const API_KEY = `Bearer ${process.env.TMDB_API_KEY}`
+  const API_KEY = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYWRlNmIzNDM5MDI2ZjdlOGRlMzEzMzBkYmRmM2VlOSIsInN1YiI6IjY1M2RmY2I0MTA5Y2QwMDBlYWUzY2JiOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VcxBDxU_aw-KTBH7nzMcQUb7y95PtOm6AdhklQyTwcE`
   const options = {
     method: "GET",
 
