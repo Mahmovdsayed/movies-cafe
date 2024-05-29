@@ -145,7 +145,7 @@ const MovieDetails = ({ }: Iprops) => {
                 <ScrollShadow
                   hideScrollBar
                   visibility="bottom"
-                  size={300}
+                  size={250}
                   className="overflow-hidden"
                 >
                   <Image
