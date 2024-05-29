@@ -25,7 +25,7 @@ export async function generateMetadata({
     description: data.overview,
     keywords: [data.original_name],
     openGraph: {
-      images: [`https://image.tmdb.org/t/p/original${data.poster_path}`],
+      images: [`https://image.tmdb.org/t/p/original${data.backdrop_path}`],
       title: data.original_name,
       description: data.overview,
     },
@@ -34,7 +34,7 @@ export async function generateMetadata({
       creator: '@mahmovdsayed',
       title: data.original_name,
       description: data.overview,
-      images: [`https://image.tmdb.org/t/p/original${data.poster_path}`],
+      images: [`https://image.tmdb.org/t/p/original${data.backdrop_path}`],
     },
     robots: {
       index: false,
