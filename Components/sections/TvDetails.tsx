@@ -145,7 +145,7 @@ const TvDetails = ({ }: Iprops) => {
                 <ScrollShadow
                   hideScrollBar
                   visibility="bottom"
-                  size={300}
+                  size={250}
                   className="overflow-hidden"
                 >
                   <Image
@@ -153,7 +153,7 @@ const TvDetails = ({ }: Iprops) => {
                         ? "md:h-[600px]"
                         : "w-screen sm:h-[400px] lg:h-[600px]  object-contain object-center"
                       } `}
-                    radius="none"
+                    radius="lg"
                     isBlurred={true}
                     src={`${mox.backdrop_path == null
                         ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/gccpgmp6z5z6mljukeql.svg"
