@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://moviescafe.vercel.app'),
 
   title: "Movies Cafe",
-    manifest: "/manifest.json",
+   manifest: "/manifest.json",
   viewport:"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   keywords: ['movies cafe', 'Movies Cafe', 'movies-cafe', 'Depolna', 'depolna'],
   icons: {
@@ -24,7 +24,6 @@ export const metadata: Metadata = {
   },
   creator: "Mahmoud Sayed",
   applicationName: "Movies Cafe",
-  manifest: "../public/manifest.json",
 
   description:
     "Welcome to our cinematic hub! Explore the world of movies and TV shows in a new light with our website powered by TMDb API. Dive into a vast database featuring details about films, actors, ratings, and more. Browse, save your favorite movies, and stay updated with the latest cinematic news. Immerse yourself in the seventh art effortlessly and enjoy a unique cinematic experience through our site!",
