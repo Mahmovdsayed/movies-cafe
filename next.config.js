@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
-const nextConfig = ({
- productionBrowserSourceMaps: false,
+const nextConfig = {
+  productionBrowserSourceMaps: false,
   swcMinify: true,
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+  compiler: {
+    removeConsole: process.env.NODE_ENV !== "development", // Remove console.log in production
   },
   images: {
     remotePatterns: [
@@ -14,6 +14,12 @@ const nextConfig = ({
       },
     ],
   },
+};
+const withPWA = require("next-pwa")({
+  dest: "public", // Destination directory for the PWA files
+  disable: process.env.NODE_ENV === "development", // Disable PWA in development mode
+  register: true, // Register the PWA service worker
+  skipWaiting: true, // Skip waiting for service worker activation
 });
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);
