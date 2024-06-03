@@ -2,10 +2,12 @@
     "theme_color": "#9455d3",
     "background_color": "#9455d3",
     "display": "standalone",
+    "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
     "name": "Movies Cafe",
     "short_name": "Movies Cafe",
+    "splash_pages": null,
     "description": "Explore the world of movies and TV shows in a new light with our website powered by TMDb API. Dive into a vast database featuring details about films, actors, ratings, and more. Browse, save your favorite movies, and stay updated with the latest cinematic news. Immerse yourself in the seventh art effortlessly and enjoy a unique cinematic experience through our site!",
     "icons": [
         {
