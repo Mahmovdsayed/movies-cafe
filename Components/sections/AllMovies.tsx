@@ -38,7 +38,7 @@ export default function Movies() {
   const [language, setlanguage] = useState("en-US");
   const router = useRouter();
 
-  const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${currentPage}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=${language}&page=${currentPage}&sort_by=popularity.desc`;
   const options = {
     method: "GET",
 
@@ -138,7 +138,7 @@ export default function Movies() {
             <Pagination
 
               showControls
-              total={200}
+              total={500}
               page={currentPage}
               onChange={setCurrentPage}
               color="secondary"
