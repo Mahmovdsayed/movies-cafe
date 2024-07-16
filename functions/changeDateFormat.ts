@@ -8,6 +8,5 @@ export function changeDateFormat(created_at: string): string {
     timeZone: "UTC",
   };
   const formattedDate = originalDate.toLocaleDateString("en-US", options);
-
   return formattedDate;
 }

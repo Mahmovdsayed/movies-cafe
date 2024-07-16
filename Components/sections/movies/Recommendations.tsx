@@ -109,6 +109,7 @@ const Recommendations = ({ }: Iprops) => {
           transition={{ duration: 2 * 0.3 }}
           variants={{
             visible: { opacity: 1 },
+            
             hidden: { opacity: 0 },
           }}
         >
@@ -116,7 +117,7 @@ const Recommendations = ({ }: Iprops) => {
             <Chip
               className={`${REC == 0 ? "hidden" : "my-4"} `}
               size="md"
-              color="secondary"
+              color="danger"
               variant="dot"
             >
               Recommendations

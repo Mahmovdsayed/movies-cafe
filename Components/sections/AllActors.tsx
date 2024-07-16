@@ -10,7 +10,7 @@ import { GoMoveToTop } from "react-icons/go";
 import { motion } from "framer-motion";
 
 import {
-Image,
+  Image,
   Card,
   CardFooter,
   Button,
@@ -19,6 +19,7 @@ Image,
   Avatar,
   SelectItem,
   Skeleton,
+  CardHeader,
 } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/react";
 import LoadingScreen from "../layout/LoadingScreen";
@@ -64,7 +65,7 @@ export default function AllActors() {
     });
     router.push(`/actors/${id}`);
   }
-  function scrollToTop ()  {
+  function scrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -76,55 +77,59 @@ export default function AllActors() {
         <LoadingCard />
       ) : (
         <div>
-          <div className=" grid  grid-flow-row gap-4 py-6 grid-cols-2  sm:grid-cols-2 px-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid grid-flow-row gap-4 py-6 grid-cols-1 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {movies.map((movie) => (
               <div key={movie.id} className="overflow-hidden   relative ">
- <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ duration: 2 * 0.3 }}
-                variants={{
-                  visible: { opacity: 1 },
-                  hidden: { opacity: 0 },
-                }}
-              >
-                <Card
-                  isPressable
-                  onClick={() => handleButtonClick(movie.id)}
-                  className="w-full h-full relative cursor-pointer col-span-12 sm:col-span-5"
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ duration: 2 * 0.3 }}
+                  variants={{
+                    visible: { opacity: 1 },
+                    hidden: { opacity: 0 },
+                  }}
                 >
-                   <div className="z-20 absolute right-0 top-0 ">
+                  <Card
+                    isPressable
+                    isFooterBlurred
+                    onClick={() => handleButtonClick(movie.id)}
+                    className="w-full h-full relative cursor-pointer col-span-12 sm:col-span-5"
+                  >
+                    <div className="z-50 absolute right-0 top-0 ">
                       <FavButton slug={movie.id} type="actor" className=" rounded-none rounded-bl-md" title={movie.name} date={movie.known_for_department} imgUrl={`${movie.profile_path == null
                         ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                         : `https://image.tmdb.org/t/p/original${movie.profile_path}`
                         }`} />
                     </div>
-                  
-                  <Image
-                    alt={movie.name}
-                    draggable={false}
-                  radius="none"
 
-                   isZoomed
-                    className="z-0 w-full h-full object-cover "
-                    src={`${
-                      movie.profile_path == null
+                    <CardHeader className="absolute z-40 top-1 flex items-start justify-between">
+                      <div>
+                        <p className="text-tiny text-start text-white/60 uppercase font-bold">{movie.known_for_department}</p>
+                        <h4 className="text-white  text-start font-semibold text-tiny">{movie.name}</h4>
+                      </div>
+                    </CardHeader>
+                    <div className="absolute w-full h-full bg-gradient-to-b from-black/10 to-black/40 hover:bg-none z-10"></div>
+
+                    <Image
+                      alt={movie.title}
+                      draggable={false}
+                      radius="none"
+                      loading="lazy"
+
+                      isZoomed
+                      className="z-0 w-full h-full  object-cover "
+                      src={`${movie.profile_path == null
                         ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                         : `https://image.tmdb.org/t/p/original${movie.profile_path}`
-                    }`}
-                  />
+                        }`}
+                    />
+                    <CardFooter className="z-20 items-center justify-center before:bg-white/10 border-white/20 border-1  py-4 absolute before:rounded-xl rounded-large bottom-2 w-[calc(100%_-_8px)] shadow-small ml-1 ">
+                      <p className="text-sm text-center font-semibold text-white/80">{movie.original_name}</p>
 
-                  <CardFooter className=" bg-gray-200 dark:bg-[#18181B] ">
-                    <div>
-                      <p className="text-tiny text-start font-bold">{movie.name}</p>
-                      <p className="text-tiny text-start dark:text-white/60">
-                        {movie.known_for_department}
-                      </p>
-                    </div>
-                  </CardFooter>
-                </Card>
- </motion.div>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
               </div>
             ))}
           </div>
@@ -140,7 +145,7 @@ export default function AllActors() {
             />
           </div>
           <div className="flex items-center justify-center">
-          <Button startContent={<GoMoveToTop />}  onClick={scrollToTop} >Scroll to Top</Button>
+            <Button startContent={<GoMoveToTop />} onClick={scrollToTop} >Scroll to Top</Button>
           </div>
         </div>
       )}

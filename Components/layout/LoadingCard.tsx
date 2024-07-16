@@ -89,64 +89,51 @@ const Cards = [{
 },]
 const LoadingCard = ({ }: IProps) => {
     return <>
-        <div className=" grid  grid-flow-row gap-4 py-6 grid-cols-2  sm:grid-cols-2 px-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
-            {Cards.map((movie) => (
-                <div key={movie.id} className="overflow-hidden   relative ">
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        transition={{ duration: 2 * 0.3 }}
-                        variants={{
-                            visible: { opacity: 1 },
-                            hidden: { opacity: 0 },
-                        }}
-                    >
-                        <Card
-                            isPressable
-
-                            className="w-full h-full relative  col-span-12 sm:col-span-5"
+        <div className="">
+            <div className="grid grid-flow-row gap-4 py-6 grid-cols-1 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {Cards.map((movie) => (
+                    <div key={movie.id} className="overflow-hidden   relative ">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            transition={{ duration: 2 * 0.3 }}
+                            variants={{
+                                visible: { opacity: 1 },
+                                hidden: { opacity: 0 },
+                            }}
                         >
+                            <Card
+                                isPressable
+                                className="w-full h-full relative  col-span-12 sm:col-span-5"
+                            >
+                                <Image
+                                    alt={movie.title}
+                                    draggable={false}
+                                    radius="none"
+                                    isLoading
+                                    className="z-0 w-full h-full  object-cover"
+                                    src="https://i.pinimg.com/564x/14/a7/1f/14a71fac2c6aaff1a57b206329d4e7b8.jpg"
+                                />
 
+                                <CardFooter className="z-20 items-center justify-center before:bg-white/10 border-white/20 border-1  py-2 absolute before:rounded-xl rounded-large bottom-2 w-[calc(100%_-_8px)] shadow-small ml-1 ">
+                                    <div>
+                                        <div className="">
+                                            <Skeleton className="w-full rounded-lg">
+                                                <div className="h-7 w-full text-sm text-center font-semibold text-white/80">sssssssssffffffdddddddddfffss</div>
+                                            </Skeleton>
 
-                            <Image
-                                alt={movie.title}
-                                draggable={false}
-                                radius="none"
-
-                                isLoading
-                                className="z-0 w-full h-full  object-cover"
-                                src="https://i.pinimg.com/564x/14/a7/1f/14a71fac2c6aaff1a57b206329d4e7b8.jpg"
-                            />
-
-                            <CardFooter className=" bg-gray-200 dark:bg-[#18181B]   justify-between">
-                                <div>
-
-                                    <div className="space-y-3">
-                                        <Skeleton className="w-4/5 rounded-lg">
-                                            <div className="h-6 w-4/5 rounded-md">sssssssssfffffffffss</div>
-                                        </Skeleton>
-                                        <Skeleton className="w-2/5 rounded-lg">
-                                            <div className="h-4 w-2/5 rounded-md "></div>
-                                        </Skeleton>
+                                        </div>
                                     </div>
-                                </div>
-                                {/* <Button
-                      as={Link}
-                      showAnchorIcon
-                      className="text-tiny bg-gradient-to-r from-blue-700 via-blue-800 to-gray-600 text-white"
-                      href={`/movies/${movie.id}`}
-                      radius="sm"
-                      size="sm"
-                    >
-                      Explore
-                    </Button> */}
-                            </CardFooter>
-                        </Card>
-                    </motion.div>
-                </div>
-            ))}
+
+                                </CardFooter>
+                            </Card>
+                        </motion.div>
+                    </div>
+                ))}
+            </div>
         </div>
+
     </>;
 };
 

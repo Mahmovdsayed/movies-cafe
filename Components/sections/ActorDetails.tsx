@@ -309,7 +309,7 @@ const ActorDetails = ({ }: IProps) => {
                 className="flex justify-center items-center flex-col"
                 aria-label="Options"
                 size="sm"
-                color="secondary"
+                color="danger"
               >
                 <Tab
                   key="Movies"

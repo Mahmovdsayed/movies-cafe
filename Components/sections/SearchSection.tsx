@@ -1,10 +1,13 @@
 "use client";
-import { Button, Card, CardFooter, Input, Pagination, Image } from "@nextui-org/react";
+import { Button, Card, CardFooter, Input, Pagination, Image, Tabs, Tab } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { BsFillSearchHeartFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import { IoSearchSharp, IoTvSharp } from "react-icons/io5";
+import { FaUsers } from "react-icons/fa6";
+import { MdLocalMovies } from "react-icons/md";
 interface IProps { }
 const SearchSection = ({ }: IProps) => {
   const [value, setValue] = React.useState("");
@@ -78,7 +81,7 @@ const SearchSection = ({ }: IProps) => {
             type="submit"
             isIconOnly
             startContent={<BsFillSearchHeartFill />}
-            color="secondary"
+            color="danger"
             className="ms-1"
           ></Button>
         </form>
@@ -87,68 +90,96 @@ const SearchSection = ({ }: IProps) => {
         Discover the magic of cinema at your fingertips! Search for movies,
         series, or actors effortlessly.🎬🔍
       </p>
-      <div className="mt-8">
+      <div className="mt-8 flex flex-col items-center justify-center">
         {pageNumber == "" ? (
-          <Accordion isDisabled variant="splitted">
-            <AccordionItem
-              key="1"
-              subtitle="Press to expand"
-              aria-label="Movies"
-              title="Movies"
-            ></AccordionItem>
-            <AccordionItem
-              key="2"
-              subtitle="Press to expand"
-              aria-label="Tv Shows"
-              title="Tv Shows"
-            ></AccordionItem>
-            <AccordionItem
-              key="3"
-              subtitle="Press to expand"
-              aria-label="Actors"
-              title="Actors"
-            >
-              {defaultContent}
-            </AccordionItem>
-          </Accordion>
+          <Tabs
+            isDisabled
+            key="full"
+            radius="sm"
+            size="sm"
+            color="danger"
+            aria-label="Options"
+          >
+            <Tab
+              id="/movies"
+              key="/movies"
+              title={
+                <div className="flex items-center space-x-1">
+                  <MdLocalMovies />
+                  <span>Movies</span>
+                </div>
+              }
+            />
+            <Tab
+              id="/tv"
+              key="/tv"
+              title={
+                <div className="flex items-center space-x-1">
+                  <IoTvSharp />
+
+                  <span>TV Shows</span>
+                </div>
+              }
+            />
+            <Tab
+              id="/actors"
+              key="/actors"
+              title={
+                <div className="flex items-center space-x-1">
+                  <FaUsers />
+                  <span>Actors</span>
+                </div>
+              }
+            />
+          </Tabs>
         ) : (
+          <Tabs
+            aria-label="Options"
+            size="sm"
+            color="danger"
+            className={"flex justify-center items-center flex-col"}
+          >
 
-          <Accordion variant="splitted">
-            <AccordionItem
-              key="1"
-              subtitle="Press to expand"
-              aria-label="Movies"
-              title="Movies"
+            <Tab
+              key="Movies"
+
+              title={
+                <div className="flex items-center space-x-1">
+                  <MdLocalMovies />
+                  <span>Movies</span>
+                </div>
+              }
             >
-              {movies.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="flex overflow-x-scroll scrollbar-hide space-x-4 my-6">
-                {movies.map((movie) => (
-                  <div key={movie.id}>
-                    <Card
-                      isPressable
-                      onClick={() => router.push(`/movies/${movie.id}`)}
-                      className="w-[250px] relative"
-                    >
+              <div className="">
+                {movies.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="grid  grid-flow-row gap-4 py-6 grid-cols-1 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {movies.map((movie) => (
+                    <div key={movie.id}>
+                      <Card
+                        isPressable
+                        onClick={() => router.push(`/movies/${movie.id}`)}
+                        className=" relative"
+                      >
 
 
-                      <Image
-                        alt={movie.title}
-                        draggable={false}
-                        isZoomed
-                        className="z-0 w-full h-full  translate-y-[-20px] object-cover"
-                        src={`${movie.poster_path === null
-                          ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                          : `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                          }`}
-                      />
+                        <Image
+                          alt={movie.title}
+                          draggable={false}
+                          isZoomed
+                          className="z-0 w-full h-full  translate-y-[-20px] object-cover"
+                          src={`${movie.poster_path === null
+                            ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                            : `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                            }`}
+                        />
 
-                      <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818]  justify-between">
-                        <div>
-                          <p className="text-start text-tiny">{movie.title}</p>
-                          <p className="text-start text-tiny dark:text-white/60">
-                            {movie.release_date}
-                          </p>
-                        </div>
-                        {/* <Button
+                        <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818]  justify-between">
+                          <div>
+                            <p className="text-start text-tiny">{movie.title}</p>
+                            <p className="text-start text-tiny dark:text-white/60">
+                              {movie.release_date}
+                            </p>
+                          </div>
+                          {/* <Button
                     as={Link}
                     showAnchorIcon
                     className="text-tiny bg-gradient-to-r from-blue-700 via-blue-800 to-gray-600 text-white"
@@ -158,48 +189,54 @@ const SearchSection = ({ }: IProps) => {
                   >
                     Explore
                   </Button> */}
-                      </CardFooter>
-                    </Card>
-                  </div>
-                ))}
-              </div>}
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  ))}
+                </div>}
+              </div>
+            </Tab>
 
-            </AccordionItem>
-            <AccordionItem
-              key="2"
-              subtitle="Press to expand"
-              aria-label="Tv Shows"
-              title="Tv Shows"
+            <Tab
+              key="Tv Shows"
+              title={
+                <div className="flex items-center space-x-1">
+                  <IoTvSharp />
+
+                  <span>TV Shows</span>
+                </div>
+              }
             >
-              {tv.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="flex overflow-x-scroll scrollbar-hide space-x-4 my-6">
-                {tv.map((movie) => (
-                  <div key={movie.id}>
-                    <Card
-                      isPressable
-                      onClick={() => router.push(`/tv/${movie.id}`)}
-                      className="w-[250px] relative"
-                    >
+              <div className="">
+                {tv.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="grid  grid-flow-row gap-4 py-6 grid-cols-2 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {tv.map((movie) => (
+                    <div key={movie.id}>
+                      <Card
+                        isPressable
+                        onClick={() => router.push(`/tv/${movie.id}`)}
+                        className=" relative"
+                      >
 
 
-                      <Image
-                        alt={movie.title}
-                        draggable={false}
-                        isZoomed
-                        className="z-0 w-full h-full  translate-y-[-20px] object-cover"
-                        src={`${movie.poster_path === null
-                          ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                          : `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                          }`}
-                      />
+                        <Image
+                          alt={movie.title}
+                          draggable={false}
+                          isZoomed
+                          className="z-0 w-full h-full  translate-y-[-20px] object-cover"
+                          src={`${movie.poster_path === null
+                            ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                            : `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                            }`}
+                        />
 
-                      <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818] justify-between">
-                        <div>
-                          <p className="text-start text-tiny">{movie.name}</p>
-                          <p className="text-start text-tiny dark:text-white/60">
-                            {movie.first_air_date}
-                          </p>
-                        </div>
-                        {/* <Button
+                        <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818] justify-between">
+                          <div>
+                            <p className="text-start text-tiny">{movie.name}</p>
+                            <p className="text-start text-tiny dark:text-white/60">
+                              {movie.first_air_date}
+                            </p>
+                          </div>
+                          {/* <Button
                       as={Link}
                       showAnchorIcon
                       className="text-tiny bg-gradient-to-r from-blue-700 via-blue-800 to-gray-600 text-white"
@@ -209,48 +246,52 @@ const SearchSection = ({ }: IProps) => {
                     >
                       Explore
                     </Button> */}
-                      </CardFooter>
-                    </Card>
-                  </div>
-                ))}
-              </div>}
-
-            </AccordionItem>
-            <AccordionItem
-              key="3"
-              subtitle="Press to expand"
-              aria-label="Actors"
-              title="Actors"
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  ))}
+                </div>}
+              </div>
+            </Tab>
+            <Tab
+              key="Actors"
+              title={
+                <div className="flex items-center space-x-1">
+                  <FaUsers />
+                  <span>Actors</span>
+                </div>
+              }
             >
-              {actors.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="flex overflow-x-scroll scrollbar-hide space-x-4 my-6">
-                {actors.map((movie) => (
-                  <div key={movie.id}>
-                    <Card
-                      isPressable
-                      onClick={() => router.push(`/actors/${movie.id}`)}
-                      className="w-[250px] relative"
-                    >
+              <div className=" ">
+                {actors.length == 0 ? <div className="text-sm text-center">not found</div> : <div className="grid  grid-flow-row gap-4 py-6 grid-cols-2 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {actors.map((movie) => (
+                    <div key={movie.id}>
+                      <Card
+                        isPressable
+                        onClick={() => router.push(`/actors/${movie.id}`)}
+                        className="relative"
+                      >
 
 
-                      <Image
-                        alt={movie.title}
-                        draggable={false}
-                        isZoomed
-                        className="z-0 w-full h-full  translate-y-[-20px] object-cover"
-                        src={`${movie.profile_path === null
-                          ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                          : `https://image.tmdb.org/t/p/original${movie.profile_path}`
-                          }`}
-                      />
+                        <Image
+                          alt={movie.title}
+                          draggable={false}
+                          isZoomed
+                          className="z-0 w-full h-full  translate-y-[-20px] object-cover"
+                          src={`${movie.profile_path === null
+                            ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                            : `https://image.tmdb.org/t/p/original${movie.profile_path}`
+                            }`}
+                        />
 
-                      <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818]  justify-between">
-                        <div>
-                          <p className="text-start text-tiny">{movie.name}</p>
-                          <p className="text-start text-tiny dark:text-white/60">
-                            {movie.known_for_department}
-                          </p>
-                        </div>
-                        {/* <Button
+                        <CardFooter className="absolute bottom-0 bg-gray-200 dark:bg-[#181818]  justify-between">
+                          <div>
+                            <p className="text-start text-tiny">{movie.name}</p>
+                            <p className="text-start text-tiny dark:text-white/60">
+                              {movie.known_for_department}
+                            </p>
+                          </div>
+                          {/* <Button
                       as={Link}
                       showAnchorIcon
                       className="text-tiny bg-gradient-to-r from-blue-700 via-blue-800 to-gray-600 text-white"
@@ -260,14 +301,15 @@ const SearchSection = ({ }: IProps) => {
                     >
                       Explore
                     </Button> */}
-                      </CardFooter>
-                    </Card>
-                  </div>
-                ))}
-              </div>}
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  ))}
+                </div>}
+              </div>
+            </Tab>
+          </Tabs>
 
-            </AccordionItem>
-          </Accordion>
         )}
       </div>
     </>

@@ -24,21 +24,25 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { PersistGate } from "redux-persist/integration/react";
+import { ReactLenis, useLenis } from '@studio-freight/react-lenis'
 
 const persistConfig = { key: "root", storage, version: 1 }
 const persistedReducer = persistReducer(persistConfig, authReducer)
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
+
     getDefaultMiddleware({
+
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+
       },
     }),
 })
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   return (
@@ -60,8 +64,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
           </Offline>
         </div>
         <Provider store={store}>
-          <PersistGate  loading={<LoadingScreen />} persistor={persistStore(store)}>
-            {children}
+          <PersistGate loading={<LoadingScreen />} persistor={persistStore(store)}>
+            <ReactLenis root >
+              {children}
+            </ReactLenis>
           </PersistGate>
 
         </Provider>

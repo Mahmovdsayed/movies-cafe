@@ -23,12 +23,12 @@ const UserInfo = ({ username, firstName, secondName, gender, verifed, createdAt 
                     <MdVerified />
                 </span></h1>
                 <div className="flex flex-col">
-                    <Chip startContent={<MdAccessTimeFilled />} className="text-tiny my-2" radius="sm" variant="flat" color="secondary">Member since: <span className="font-bold">{formatCreatedAt(createdAt)}</span></Chip>
+                    <Chip startContent={<MdAccessTimeFilled />} className="text-tiny my-2" radius="sm" variant="flat" color="danger">Member since: <span className="font-bold">{formatCreatedAt(createdAt)}</span></Chip>
                     {/* <Chip startContent={<FaUserLarge />} className="text-tiny mb-2" radius="sm" variant="flat" color="secondary">Gender: <span className="font-bold capitalize">{gender}</span></Chip> */}
                 </div>
             </div>
             <Divider />
-            
+
         </div>
     </>;
 };

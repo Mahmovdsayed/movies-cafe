@@ -34,6 +34,7 @@ import {
   Skeleton,
   CardFooter,
   CardHeader,
+  Tooltip,
 } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
@@ -46,6 +47,7 @@ import Recommendations from "./movies/Recommendations";
 import Videos from "./movies/Videos";
 import Images from "./movies/Images";
 import FavButton from "../utils/FavButton";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 const MovieDetails = ({ }: Iprops) => {
   const [loading, setLoading] = useState(true);
@@ -70,6 +72,7 @@ const MovieDetails = ({ }: Iprops) => {
   const [test, setTEST] = useState<any>([]);
   const [reviews, setreviews] = useState<any>([]);
   const [image, setImage] = useState<any>([]);
+  const [Prod, setProd] = useState<any>([]);
   const [REC, setREC] = useState<any>([]);
   const [links, setLinks] = useState<any>([]);
   const linksUrl = `https://api.themoviedb.org/3/movie/${slug}/external_ids`;
@@ -99,9 +102,9 @@ const MovieDetails = ({ }: Iprops) => {
     const data = await res.json();
     const dataLinks = await link.json();
     const actorData = await fetch(actor, options);
-
+    console.log(data)
     const ActorRes = await actorData.json();
-
+    setProd(data.production_companies)
     setreviews(revie.results);
     setLinks(dataLinks);
     setmox(data);
@@ -130,8 +133,9 @@ const MovieDetails = ({ }: Iprops) => {
             visible: { opacity: 1 },
             hidden: { opacity: 0 },
           }}
-        >          <div className="my-6 ms-2">
-            <Breadcrumbs size="sm" radius="full" variant={"solid"}>
+        >
+          <div className="my-6 ms-2 flex items-center justify-center">
+            <Breadcrumbs size="sm" radius="sm" variant={"solid"}>
               <BreadcrumbItem href="/">Home</BreadcrumbItem>
               <BreadcrumbItem href="/movies">Movies</BreadcrumbItem>
               <BreadcrumbItem className="whitespace-nowrap overflow-hidden overflow-ellipsis">
@@ -150,14 +154,13 @@ const MovieDetails = ({ }: Iprops) => {
                 >
                   <Image
                     className={`${mox.backdrop_path == null
-                        ? "md:h-[600px]"
-                        : "w-screen sm:h-[400px] lg:h-[600px]  object-contain object-center"
+                      ? "md:h-[600px]"
+                      : "w-screen sm:h-[400px] lg:h-[600px] rounded-t-[45px] md:rounded-t-none object-contain object-center"
                       } `}
                     radius="lg"
-                    isBlurred={true}
                     src={`${mox.backdrop_path == null
-                        ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/gccpgmp6z5z6mljukeql.svg"
-                        : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
+                      ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/gccpgmp6z5z6mljukeql.svg"
+                      : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
                       }`}
                     alt={mox.original_name}
                   />
@@ -171,26 +174,40 @@ const MovieDetails = ({ }: Iprops) => {
                   className="w-[125px] md:w-[150px]  object-cover "
                   alt={mox.original_name}
                   src={`${mox.poster_path == null
-                      ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                      : `https://image.tmdb.org/t/p/original${mox.poster_path}`
+                    ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                    : `https://image.tmdb.org/t/p/original${mox.poster_path}`
                     }`}
                 />
               </div>
             </div>
 
             <div className="mx-2 flex flex-col items-center mt-32 md:mt-36 justify-center text-center">
-              <h3 className="font-bold text-xl md:text-2xl">{mox.title}</h3>
-              <span className="mx-6 font-light">{mox.tagline}</span>
+              <h3 className="font-bold text-4xl md:text-6xl">{mox.title}</h3>
+              <span className=" font-medium mt-3">{mox.tagline}</span>
               <Chip
                 size="sm"
-                radius="full"
+                radius="sm"
+                color="danger"
                 className={`${mox.release_date ? null : "hidden"} my-2`}
                 variant="flat"
+                startContent={<MdOutlineTipsAndUpdates />}
               >
-                <span className={`font-bold dark:text-green-300`}>
+                <span className={`font-bold `}>
                   {mox.release_date}
                 </span>
               </Chip>
+              {/* <div className="flex items-center justify-center space-x-2">
+                {Prod.map((pro: any) =>
+                  <Tooltip color="danger" size="sm" radius="sm" content={pro.name} key={pro.id}>
+                    <Card className="w-full bg-gray-200 dark:bg-[#181818]" shadow="none" isPressable>
+                      <CardBody className="p-1">
+                        <Image className=" object-contain object-center w-12 h-12 dark:invert " src={`https://image.tmdb.org/t/p/original${pro.logo_path}`} alt={pro.name} />
+                      </CardBody>
+                    </Card>
+                  </Tooltip>
+
+                )}
+              </div> */}
               <div className=" space-x-2 m-2 flex justify-center items-center">
                 <Button
                   href={`https://www.facebook.com/${links.facebook_id}`}
@@ -229,6 +246,7 @@ const MovieDetails = ({ }: Iprops) => {
                   <FaXTwitter />
                 </Button>
               </div>
+             
               <div
                 className={`${mox.overview ? null : "hidden"
                   } flex justify-center items-center `}
@@ -236,7 +254,7 @@ const MovieDetails = ({ }: Iprops) => {
                 <Card
                   shadow="none"
                   radius="sm"
-                  className="mt-6 mx-4 md:w-3/4 lg:w-2/4 bg-gray-200 dark:bg-[#18181B] "
+                  className="mt-3 mx-4 md:w-3/4 lg:w-2/4 bg-gray-200 dark:bg-[#18181B] "
                 >
                   <CardHeader>
                     <h3 className="font-bold">Movie Overview</h3>
@@ -247,7 +265,7 @@ const MovieDetails = ({ }: Iprops) => {
                 </Card>
               </div>
 
-              <div className="flex justify-center space-x-3 mt-6 items-center">
+              <div className="flex justify-center space-x-2 mt-3 items-center">
                 <FavButton slug={mox.id} type="movie" className={''} title={mox.title} date={mox.release_date} imgUrl={`${mox.poster_path == null
                   ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                   : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
@@ -259,7 +277,7 @@ const MovieDetails = ({ }: Iprops) => {
                   href={mox.homepage}
                   className={`${mox.homepage === "" ? "hidden" : ""}`}
                   showAnchorIcon
-                  color="default"
+                  color="danger"
                 >
                   Watch Now
                 </Button>
@@ -295,7 +313,7 @@ const MovieDetails = ({ }: Iprops) => {
             <Chip
               className={`${actors == 0 ? "hidden" : "my-4"} `}
               size="md"
-              color="secondary"
+              color="danger"
               variant="dot"
             >
               Actors
@@ -311,7 +329,7 @@ const MovieDetails = ({ }: Iprops) => {
                       key={actor.id}
                       isPressable
                     >
-                       <div className="z-20 absolute right-0 top-0 ">
+                      <div className="z-20 absolute right-0 top-0 ">
                         <FavButton slug={actor.id} type="actor" className=" rounded-none rounded-bl-md" title={actor.name} date={actor.character} imgUrl={`${actor.profile_path == null
                           ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                           : `https://image.tmdb.org/t/p/original${actor.profile_path}`
@@ -320,17 +338,17 @@ const MovieDetails = ({ }: Iprops) => {
                       <CardBody className="overflow-hidden p-0">
                         <Image
                           shadow="sm"
-                          radius="lg"
+                          radius="none"
                           width="100%"
                           src={`${actor.profile_path == null
-                              ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                              : `https://image.tmdb.org/t/p/original${actor.profile_path}`
+                            ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                            : `https://image.tmdb.org/t/p/original${actor.profile_path}`
                             }`}
                           alt={actor.name}
-                          className="w-full object-cover  h-[350px]"
+                          className="w-full object-cover h-[350px]"
                         />
                       </CardBody>
-                      <CardFooter className="text-small flex flex-col justify-between">
+                      <CardFooter className="text-small bg-gray-200 dark:bg-[#181818] flex flex-col justify-between">
                         <b>{actor.name}</b>
                         <p className="text-default-500">{actor.character}</p>
                       </CardFooter>

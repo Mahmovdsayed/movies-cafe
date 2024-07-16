@@ -12,4 +12,3 @@ export function actorGender(gender: number): string {
   }
 }
 
-export const url = process.env.USER_BACKEND_URL || "";

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../Providers/Providers";
@@ -10,12 +10,15 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], });
+export const viewport: Viewport = {
+  themeColor:"#0000FF",
+  colorScheme:"dark"
+}
 export const metadata: Metadata = {
   metadataBase: new URL('https://moviescafe.vercel.app'),
-
   title: "Movies Cafe",
-   manifest: "/manifest.json",
-  viewport:"minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
+  manifest: "/manifest.json",
+  viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   keywords: ['movies cafe', 'Movies Cafe', 'movies-cafe', 'Depolna', 'depolna'],
   icons: {
     icon: "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg",

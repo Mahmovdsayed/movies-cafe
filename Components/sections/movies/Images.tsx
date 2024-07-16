@@ -1,5 +1,7 @@
 "use client";
-interface Iprops {}
+interface Iprops {
+  
+}
 
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter, FaLink } from "react-icons/fa6";
@@ -114,7 +116,7 @@ const Images = ({}: Iprops) => {
              <Chip
                className={`${image == 0 ? "hidden" : "my-4"} `}
                size="md"
-               color="secondary"
+               color="danger"
                variant="dot"
              >
                Images

@@ -1,7 +1,7 @@
 {
-  "name": "depolna",
+  "name": "movies-cafe",
   "description": "Explore the world of movies and TV shows in a new light with our website powered by TMDb API. Dive into a vast database featuring details about films, actors, ratings, and more. Browse, save your favorite movies, and stay updated with the latest cinematic news. Immerse yourself in the seventh art effortlessly and enjoy a unique cinematic experience through our site!",
-  "version": "2.1.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,7 @@
     "@mui/material": "^5.15.6",
     "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^2.2.4",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@tanstack/react-query": "^5.17.19",
     "@types/bcrypt": "^5.0.2",
     "@types/react-detect-offline": "^2.4.5",
@@ -31,6 +32,7 @@
     "dotenv": "^16.3.1",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.16",
+    "html2canvas": "^1.4.1",
     "jwt-decode": "^4.0.0",
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",

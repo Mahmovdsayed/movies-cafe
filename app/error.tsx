@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { Button, Link } from "@nextui-org/react";
 import { useEffect } from "react";

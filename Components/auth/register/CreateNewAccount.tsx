@@ -8,7 +8,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Bars } from "react-loader-spinner";
-import { Button, Input,Image, Select, SelectItem } from "@nextui-org/react";
+import { Button, Input, Image, Select, SelectItem } from "@nextui-org/react";
 import { MdEmail } from "react-icons/md";
 import { FaAt } from "react-icons/fa6";
 import { FaUserTie } from "react-icons/fa";
@@ -106,7 +106,7 @@ const CreateNewAccount = ({ }: IProps) => {
         onSubmit: submitRegister,
     });
     return <>
-       <div className="container mx-auto md:flex md:items-center md:justify-center my-6 p-6">
+        <div className="container mx-auto md:flex md:items-center md:justify-center my-6 p-6">
             <div className=" hidden md:flex w-1/2 ">
                 <div className="relative">
                     <Image translate="yes" isBlurred className="w-3/4 m-auto object-cover object-center" removeWrapper src="https://image.tmdb.org/t/p/original/AoK5iRup1fvbVNfI1mzGqX82igv.jpg" />
@@ -241,7 +241,7 @@ const CreateNewAccount = ({ }: IProps) => {
                                 <Bars
                                     height="20"
                                     width="100"
-                                    color="#fff"
+                                    color="RED"
                                     ariaLabel="bars-loading"
                                     wrapperStyle={{}}
                                     wrapperClass=""
@@ -250,7 +250,7 @@ const CreateNewAccount = ({ }: IProps) => {
                             </button>
                         ) : (
                             <Button
-                                radius="sm"
+                                radius="lg"
                                 size="sm"
                                 startContent={<IoLogIn />}
                                 type="submit"

@@ -21,6 +21,7 @@ import {
   SelectItem,
   Skeleton,
   Tooltip,
+  CardHeader,
 } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/react";
 import LoadingScreen from "../layout/LoadingScreen";
@@ -38,7 +39,7 @@ export default function Movies() {
   const [language, setlanguage] = useState("en-US");
   const router = useRouter();
 
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=${language}&page=${currentPage}&sort_by=popularity.desc`;
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=${language}&page=${currentPage}&sort_by=popularity.desc`;
   const options = {
     method: "GET",
 
@@ -79,10 +80,10 @@ export default function Movies() {
       {loading == true ? (
         <LoadingCard />
       ) : (
-        <div>
-          <div className=" grid  grid-flow-row gap-4 py-6 grid-cols-2  sm:grid-cols-2 px-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="">
+          <div className="grid  grid-flow-row gap-4 py-6 grid-cols-1 sm:grid-cols-2 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {movies.map((movie) => (
-              <div key={movie.id} className="overflow-hidden   relative ">
+              <div key={movie.id} className="overflow-hidden relative ">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -95,37 +96,40 @@ export default function Movies() {
                 >
                   <Card
                     isPressable
+                    isFooterBlurred
                     onClick={() => handleButtonClick(movie.id)}
                     className="w-full h-full relative   col-span-12 sm:col-span-5"
                   >
-                    <div className="z-20 absolute right-0 top-0 ">
-                      <FavButton slug={movie.id} type="movie" className=" rounded-none rounded-bl-md" title={movie.title} date={movie.release_date} imgUrl={`${movie.poster_path == null
+                    <div className="z-50 absolute right-0 top-0 ">
+                      <FavButton slug={movie.id} type="movie" className=" rounded-none rounded-bl-md z-50" title={movie.title} date={movie.release_date} imgUrl={`${movie.poster_path == null
                         ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                         : `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
                         }`} />
                     </div>
+                    <CardHeader className="absolute z-40 top-1 flex items-start justify-between">
+                      <div>
+                        <p className="text-tiny text-start text-white/60 uppercase font-bold">{movie.release_date}</p>
+                        <h4 className="text-white  text-start font-semibold text-tiny">{movie.title}</h4>
+                      </div>
 
+                    </CardHeader>
+                    <div className="absolute w-full h-full bg-gradient-to-b from-black/10 to-black/40 hover:bg-none z-10"></div>
                     <Image
                       alt={movie.title}
                       draggable={false}
                       radius="none"
+                      loading="lazy"
 
                       isZoomed
                       className="z-0 w-full h-full  object-cover "
-                      src={`${movie.poster_path == null
+                      src={`${movie.backdrop_path == null
                         ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                         : `https://image.tmdb.org/t/p/original${movie.poster_path}`
                         }`}
                     />
 
-                    <CardFooter className=" bg-gray-200 px-2 dark:bg-[#18181B]   justify-between">
-                      <div>
-                        <p className="text-start text-tiny font-bold">{movie.title}</p>
-                        <p className="text-start text-tiny dark:text-white/60">
-                          {movie.release_date}
-                        </p>
-                      </div>
-
+                    <CardFooter className="z-20 items-center justify-center before:bg-white/10 border-white/20 border-1  py-4 absolute before:rounded-xl rounded-large bottom-2 w-[calc(100%_-_8px)] shadow-small ml-1 ">
+                      <p className="text-sm text-center font-semibold text-white/80">{movie.title}</p>
 
                     </CardFooter>
                   </Card>
@@ -141,7 +145,7 @@ export default function Movies() {
               total={500}
               page={currentPage}
               onChange={setCurrentPage}
-              color="secondary"
+              color="danger"
               initialPage={1}
             />
 

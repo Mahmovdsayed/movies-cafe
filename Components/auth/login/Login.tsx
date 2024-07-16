@@ -148,7 +148,7 @@ const Login = ({ }: IProps) => {
                                 <Bars
                                     height="20"
                                     width="100"
-                                    color="#fff"
+                                    color="RED"
                                     ariaLabel="bars-loading"
                                     wrapperStyle={{}}
                                     wrapperClass=""
@@ -159,7 +159,7 @@ const Login = ({ }: IProps) => {
                             <Button
 
 
-                                size="sm"
+                                size="lg"
                                 startContent={<IoLogIn />}
                                 type="submit"
                                 className="mt-3 dark:bg-white bg-black text-white font-medium dark:text-black p-2 text-sm rounded-lg w-full "

@@ -8,10 +8,11 @@ import ReactPlayer from "react-player";
 import { Suspense } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
-import { TbRating18Plus } from "react-icons/tb";
+import { TbRating18Plus, TbTimeDuration0 } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import { toast } from 'react-hot-toast';
 import { motion } from "framer-motion";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 import Box from "@mui/material/Box";
 import {
@@ -33,6 +34,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Tooltip,
 } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
@@ -84,6 +86,8 @@ const TvDetails = ({ }: Iprops) => {
   const [image, setImage] = useState<any>([]);
   const [REC, setREC] = useState<any>([]);
   const [links, setLinks] = useState<any>([]);
+  const [Prod, setProd] = useState<any>([]);
+
   const linksUrl = `https://api.themoviedb.org/3/tv/${slug}/external_ids`;
   const url = `https://api.themoviedb.org/3/tv/${slug}?language=en-US`;
   const actor = `https://api.themoviedb.org/3/tv/${slug}/credits?language=en-US`;
@@ -100,6 +104,7 @@ const TvDetails = ({ }: Iprops) => {
     const actorData = await fetch(actor, options);
 
     const ActorRes = await actorData.json();
+    setProd(data.production_companies)
 
     setLinks(dataLinks);
     console.log(data)
@@ -130,8 +135,8 @@ const TvDetails = ({ }: Iprops) => {
             hidden: { opacity: 0 },
           }}
         >
-          <div className="my-6 ms-2">
-            <Breadcrumbs size="sm" radius="full" variant={"solid"}>
+          <div className="my-6 flex justify-center items-center">
+            <Breadcrumbs size="sm" radius="sm" variant={"solid"}>
               <BreadcrumbItem href="/">Home</BreadcrumbItem>
               <BreadcrumbItem href="/tv">Tv</BreadcrumbItem>
               <BreadcrumbItem className="whitespace-nowrap overflow-hidden overflow-ellipsis">
@@ -150,14 +155,13 @@ const TvDetails = ({ }: Iprops) => {
                 >
                   <Image
                     className={`${mox.backdrop_path == null
-                        ? "md:h-[600px]"
-                        : "w-screen sm:h-[400px] lg:h-[600px]  object-contain object-center"
+                      ? "md:h-[600px]"
+                      : "w-screen sm:h-[400px] lg:h-[600px] rounded-t-[45px] md:rounded-t-none object-contain object-center"
                       } `}
                     radius="lg"
-                    isBlurred={true}
                     src={`${mox.backdrop_path == null
-                        ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/gccpgmp6z5z6mljukeql.svg"
-                        : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
+                      ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/gccpgmp6z5z6mljukeql.svg"
+                      : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
                       }`}
                     alt={mox.original_name}
                   />
@@ -173,39 +177,53 @@ const TvDetails = ({ }: Iprops) => {
                   className="w-[125px] md:w-[150px]  object-cover "
                   alt={mox.original_name}
                   src={`${mox.poster_path == null
-                      ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
-                      : `https://image.tmdb.org/t/p/original${mox.poster_path}`
+                    ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
+                    : `https://image.tmdb.org/t/p/original${mox.poster_path}`
                     }`}
                 />
               </div>
             </div>
 
             <div className="mx-2 flex flex-col items-center mt-32 md:mt-36 justify-center text-center">
-              <h3 className="font-bold text-xl md:text-2xl">
+              <h3 className="font-bold text-4xl md:text-6xl uppercase">
                 {mox.original_name}
               </h3>
-              <span className=" font-light">{mox.tagline}</span>
+              <span className=" font-medium">{mox.tagline}</span>
               <Chip
                 size="sm"
-                radius="full"
+                radius="sm"
                 variant="flat"
-                className={`${mox.last_air_date ? null : "hidden"} my-2`}
+                color="danger"
+                className={`${mox.last_air_date ? null : "hidden"} mt-2`}
               >
-                <span className={`font-bold dark:text-green-300`}>
+                <span className={`font-bold`}>
                   {mox.last_air_date}
                 </span>
               </Chip>
-              <div className="flex justify-center items-start space-x-2 my-2">
-                <Chip className="font-thin" variant="flat">
+              <div className="flex justify-center items-start space-x-2 px-4 my-2">
+                <Chip className="font-thin w-full max-w-full " radius="sm" size="sm" color="danger" variant="flat">
                   All Episodes :{" "}
                   <span className="font-bold">{mox.number_of_episodes}</span>
                 </Chip>
-                <Chip variant="flat">
+                <Chip color="danger" className="w-full  max-w-full " variant="flat" size="sm" radius="sm">
                   All Seasons :{" "}
                   <span className="font-bold">{mox.number_of_seasons}</span>
                 </Chip>
               </div>
+              {/* <div className="flex items-center justify-center space-x-2">
+                {Prod.map((pro: any) =>
 
+                  <div className={pro.logo_path != null ? "" : "hidden"} key={pro.key}>
+                    <Tooltip color="danger" size="sm" radius="sm" content={pro.name}>
+                      <Card className="w-full bg-gray-200 dark:bg-[#181818]" shadow="none" isPressable>
+                        <CardBody className="p-1">
+                          <Image className=" object-contain object-center w-12 h-12 dark:invert  dark:mix-blend-lighten" src={`https://image.tmdb.org/t/p/original${pro.logo_path}`} alt={pro.name} />
+                        </CardBody>
+                      </Card>
+                    </Tooltip>
+                  </div>
+                )}
+              </div> */}
               <div className=" space-x-2 mt-2 flex justify-center items-center">
                 <Button
                   href={`https://www.facebook.com/${links.facebook_id}`}
@@ -252,7 +270,7 @@ const TvDetails = ({ }: Iprops) => {
                 <Card
                   shadow="none"
                   radius="sm"
-                  className="mt-6 mx-4 md:w-3/4 lg:w-2/4 bg-gray-200 dark:bg-[#18181B] "
+                  className="mt-3 mx-4 md:w-3/4 lg:w-2/4 bg-gray-200 dark:bg-[#18181B] "
                 >
                   <CardHeader>
                     <h3 className=" font-bold">Series Overview</h3>
@@ -263,7 +281,7 @@ const TvDetails = ({ }: Iprops) => {
                 </Card>
               </div>
 
-              <div className="flex justify-center space-x-3 mt-6 items-center">
+              <div className="flex justify-center space-x-3 mt-3 items-center">
                 <FavButton slug={mox.id} type="tv" className={''} title={mox.name} date={mox.air_date} imgUrl={`${mox.poster_path == null
                   ? "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1713290436/hgm3qerrugol5rycsvjn.svg"
                   : `https://image.tmdb.org/t/p/original${mox.backdrop_path}`
@@ -274,7 +292,7 @@ const TvDetails = ({ }: Iprops) => {
                   href={mox.homepage}
                   className={`${mox.homepage === "" ? "hidden" : ""}`}
                   showAnchorIcon
-                  color="default"
+                  color="danger"
                   variant="flat"
                 >
                   Watch Now
@@ -286,36 +304,34 @@ const TvDetails = ({ }: Iprops) => {
           </div>
           <div className="container  mx-auto px-4">
             <Chip
-              className={`${REC == 0 ? "hidden" : "my-4"} `}
+              className={`${mox.seasons == 0 ? "hidden" : "my-4"} `}
               size="md"
-              color="secondary"
+              color="danger"
               variant="dot"
             >
               Seasons
             </Chip>
-            <div className="container mx-auto">
-              <div className="flex overflow-x-scroll scrollbar-hide space-x-4 my-6">
-                {mox.seasons?.map((eps: any) => (
-                  <div key={eps.id}>
-                    <Card shadow="sm" className="w-[250px]" isPressable>
-                      <Image
-                        alt={eps.name}
-                        draggable={false}
-                        className="z-0 w-[300px] h-[400px] object-cover"
-                        src={`https://image.tmdb.org/t/p/original${eps.poster_path}`}
-                      />
-                      <CardFooter className="absolute  bottom-0 bg-gray-200 dark:bg-[#181818]  flex-col items-start space-y-3">
-                        <div className="text-start">
-                          <p className="text-tiny">{eps.name}</p>
-                          <p className="text-tiny dark:text-white/60">
-                            {eps.air_date}
-                          </p>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  </div>
-                ))}
-              </div>
+            <div className="flex overflow-x-scroll scrollbar-hide space-x-4 my-6">
+              {mox.seasons?.map((eps: any) => (
+                <div key={eps.id}>
+                  <Card shadow="sm" className="w-[250px]" isPressable>
+                    <Image
+                      alt={eps.name}
+                      draggable={false}
+                      className="z-0 w-[300px] h-[400px] object-cover"
+                      src={`https://image.tmdb.org/t/p/original${eps.poster_path}`}
+                    />
+                    <CardFooter className="absolute  bottom-0 bg-gray-200 dark:bg-[#181818]  flex-col items-start space-y-3">
+                      <div className="text-start">
+                        <p className="text-tiny">{eps.name}</p>
+                        <p className="text-tiny dark:text-white/60">
+                          {eps.air_date}
+                        </p>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -323,7 +339,7 @@ const TvDetails = ({ }: Iprops) => {
             <Chip
               className={`${actors == 0 ? "hidden" : "my-4"} `}
               size="md"
-              color="secondary"
+              color="danger"
               variant="dot"
             >
               Actors
@@ -348,17 +364,17 @@ const TvDetails = ({ }: Iprops) => {
                       <CardBody className="overflow-hidden p-0">
                         <Image
                           shadow="sm"
-                          radius="lg"
+                          radius="none"
                           width="100%"
                           src={`${actor.profile_path == null
-                              ? "https://res.cloudinary.com/dtpsyi5am/image/upload/v1705568264/gcrojlwbtqn06fpz7suv.svg"
-                              : `https://image.tmdb.org/t/p/original${actor.profile_path}`
+                            ? "https://res.cloudinary.com/dtpsyi5am/image/upload/v1705568264/gcrojlwbtqn06fpz7suv.svg"
+                            : `https://image.tmdb.org/t/p/original${actor.profile_path}`
                             }`}
                           alt={actor.name}
                           className="w-full object-cover  h-[350px]"
                         />
                       </CardBody>
-                      <CardFooter className="text-small flex flex-col justify-between">
+                      <CardFooter className="text-small bg-gray-200 dark:bg-[#181818] flex flex-col justify-between">
                         <b>{actor.name}</b>
                         <p className="text-default-500">{actor.character}</p>
                       </CardFooter>

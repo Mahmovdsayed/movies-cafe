@@ -114,7 +114,7 @@ const Images = ({}: Iprops) => {
              <Chip
                className={`${image == 0 ? "hidden" : "my-4"} `}
                size="md"
-               color="secondary"
+               color="danger"
                variant="dot"
              >
                Images

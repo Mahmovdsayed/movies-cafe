@@ -24,3 +24,5 @@ export function formatCreatedAt(createdAt: string): string {
     return `${elapsedSeconds} second${elapsedSeconds !== 1 ? "s" : ""} ago`;
   }
 }
+
+

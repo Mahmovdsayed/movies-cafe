@@ -93,7 +93,7 @@ const Fav = ({ posts }: IProps) => {
             <Tabs
                 aria-label="Options"
                 size="sm"
-                color="secondary"
+                color="danger"
                 className={"flex justify-center items-center flex-col"}
             >
 

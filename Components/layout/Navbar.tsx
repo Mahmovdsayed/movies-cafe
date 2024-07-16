@@ -71,195 +71,203 @@ export default function Nav() {
   const { slug } = useParams();
   return (
     <>
-      <div className={user != null ? "hidden" : ""}>
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
-          <NavbarContent justify="end">
-            <NavbarBrand>
-              <p
-                onClick={() => router.push(`/`)}
-                className="font-bold text-inherit cursor-pointer"
+      {user != null ? "" :
+        <div className={user != null ? "hidden" : ""}>
+          <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
+            <NavbarContent justify="end">
+              <NavbarBrand>
+                <p
+                  onClick={() => router.push(`/`)}
+                  className="font-bold text-inherit cursor-pointer"
+                >
+                  MOVIES CAFE
+                </p>
+              </NavbarBrand>
+            </NavbarContent>
+
+            <NavbarContent className="hidden mt-1 md:flex" justify="center">
+              <Tabs
+                selectedKey={pathname}
+                key="full"
+                radius="sm"
+                size="sm"
+                color="danger"
+                aria-label="Options"
               >
-               MOVIES CAFE
-              </p>
-            </NavbarBrand>
-          </NavbarContent>
-
-          <NavbarContent className="hidden mt-1 md:flex" justify="center">
-            <Tabs
-              selectedKey={pathname}
-              key="full"
-              radius="sm"
-              size="sm"
-              color="secondary"
-              aria-label="Options"
-            >
-              <Tab
-                id="/movies"
-                as={Link}
-                href="/movies"
-                key="/movies"
-                title={
-                  <div className="flex items-center space-x-1">
-                    <MdLocalMovies />
-                    <span>Movies</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/tv"
-                href="/tv"
-                key="/tv"
-                as={Link}
-                title={
-                  <div className="flex items-center space-x-1">
-                    <IoTvSharp />
-
-                    <span>TV Shows</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/search"
-                href="/search"
-                key="/search"
-                as={Link}
-                title={
-                  <div className="flex items-center space-x-1">
-                    <IoSearchSharp />
-                    <span>Search</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/actors"
-                as={Link}
-                href="/actors"
-                key="/actors"
-                title={
-                  <div className="flex items-center space-x-1">
-                    <FaUsers />
-                    <span>Actors</span>
-                  </div>
-                }
-              />
-            </Tabs>
-          </NavbarContent>
-
-          <NavbarContent justify="end">
-            <NavbarItem className="space-x-1">
-             
-             <Button as={Link} href="/login" size="sm" radius="sm" variant="flat" color="secondary">Login Now</Button>
-              
-            </NavbarItem>
-          </NavbarContent>
-        </Navbar>
-      </div>
-
-      <div className={user != null ? "" : "hidden"}>
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
-          <NavbarContent justify="end">
-            <NavbarBrand>
-             <p
-                onClick={() => router.push(`/`)}
-                className="font-bold text-inherit cursor-pointer"
-              >
-               MOVIES CAFE
-              </p>
-            </NavbarBrand>
-          </NavbarContent>
-
-          <NavbarContent className="hidden mt-1 md:flex" justify="center">
-            <Tabs
-              selectedKey={pathname}
-              key="full"
-              radius="sm"
-              size="sm"
-              color="secondary"
-              aria-label="Options"
-            >
-              <Tab
-                id="/movies"
-                as={Link}
-                href="/movies"
-                key="/movies"
-                title={
-                  <div className="flex items-center space-x-1">
-                    <MdLocalMovies />
-                    <span>Movies</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/tv"
-                href="/tv"
-                key="/tv"
-                as={Link}
-                title={
-                  <div className="flex items-center space-x-1">
-                    <IoTvSharp />
-
-                    <span>TV Shows</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/search"
-                href="/search"
-                key="/search"
-                as={Link}
-                title={
-                  <div className="flex items-center space-x-1">
-                    <IoSearchSharp />
-                    <span>Search</span>
-                  </div>
-                }
-              />
-              <Tab
-                id="/actors"
-                as={Link}
-                href="/actors"
-                key="/actors"
-                title={
-                  <div className="flex items-center space-x-1">
-                    <FaUsers />
-                    <span>Actors</span>
-                  </div>
-                }
-              />
-            </Tabs>
-          </NavbarContent>
-
-          <NavbarContent as="div" justify="end">
-            <Dropdown backdrop="opaque" shadow="lg" placement="bottom-end">
-              <DropdownTrigger>
-                <Avatar
-                  isBordered
-                  as="button"
-                  className="transition-transform"
-                  color="secondary"
-                  name={user?.username}
-                  size="sm"
-                  src={user?.image}
+                <Tab
+                  id="/movies"
+                  as={Link}
+                  href="/movies"
+                  key="/movies"
+                  title={
+                    <div className="flex items-center space-x-1">
+                      <MdLocalMovies />
+                      <span>Movies</span>
+                    </div>
+                  }
                 />
-              </DropdownTrigger>
-              <DropdownMenu shouldFocusWrap selectionMode="single" aria-label="Profile Actions" color="secondary" variant="shadow">
-                <DropdownItem as={Link} showDivider href={`/user/${user?._id}`} startContent={<FaUserAlt />} key="profile" className="h-14 gap-2 text-black dark:text-white">
-                  <p className="font-semibold capitalize flex items-center">{user?.username}  <span className={user?.verifed == true ? " text-md  ms-1 md:ms-2" : "hidden"}>
-                    {" "}
-                    <MdVerified />
-                  </span></p>
-                  <p className="font-medium ">{user?.email}</p>
-                </DropdownItem>
-                <DropdownItem className="text-black dark:text-white" as={Link} href={`/user/${user?._id}`} startContent={<FaHeart />} key="favourites">Favourites</DropdownItem>
-                <DropdownItem className="text-black dark:text-white" as={Link} href={`/settings`} startContent={<IoSettingsSharp />} key="settings">Settings</DropdownItem>
-                <DropdownItem startContent={<IoLogOut />} onClick={() => logout()} key="logout" color="danger">
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </NavbarContent>
-        </Navbar>
-      </div>
+                <Tab
+                  id="/tv"
+                  href="/tv"
+                  key="/tv"
+                  as={Link}
+                  title={
+                    <div className="flex items-center space-x-1">
+                      <IoTvSharp />
+
+                      <span>TV Shows</span>
+                    </div>
+                  }
+                />
+                <Tab
+                  id="/search"
+                  href="/search"
+                  key="/search"
+                  as={Link}
+                  title={
+                    <div className="flex items-center space-x-1">
+                      <IoSearchSharp />
+                      <span>Search</span>
+                    </div>
+                  }
+                />
+                <Tab
+                  id="/actors"
+                  as={Link}
+                  href="/actors"
+                  key="/actors"
+                  title={
+                    <div className="flex items-center space-x-1">
+                      <FaUsers />
+                      <span>Actors</span>
+                    </div>
+                  }
+                />
+              </Tabs>
+            </NavbarContent>
+
+            <NavbarContent justify="end">
+              <NavbarItem className="space-x-1">
+
+                <Button as={Link} href="/login" size="sm" radius="sm" variant="flat" color="danger">Login Now</Button>
+
+              </NavbarItem>
+            </NavbarContent>
+          </Navbar>
+        </div>
+      }
+
+
+      {
+        user != null ?
+          <div>
+            <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
+              <NavbarContent justify="end">
+                <NavbarBrand>
+                  <p
+                    onClick={() => router.push(`/`)}
+                    className="font-bold text-inherit cursor-pointer"
+                  >
+                    MOVIES CAFE
+                  </p>
+                </NavbarBrand>
+              </NavbarContent>
+
+              <NavbarContent className="hidden mt-1 md:flex" justify="center">
+                <Tabs
+                  selectedKey={pathname}
+                  key="full"
+                  radius="sm"
+                  size="sm"
+                  color="danger"
+                  aria-label="Options"
+                >
+                  <Tab
+                    id="/movies"
+                    as={Link}
+                    href="/movies"
+                    key="/movies"
+                    title={
+                      <div className="flex items-center space-x-1">
+                        <MdLocalMovies />
+                        <span>Movies</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    id="/tv"
+                    href="/tv"
+                    key="/tv"
+                    as={Link}
+                    title={
+                      <div className="flex items-center space-x-1">
+                        <IoTvSharp />
+
+                        <span>TV Shows</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    id="/search"
+                    href="/search"
+                    key="/search"
+                    as={Link}
+                    title={
+                      <div className="flex items-center space-x-1">
+                        <IoSearchSharp />
+                        <span>Search</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    id="/actors"
+                    as={Link}
+                    href="/actors"
+                    key="/actors"
+                    title={
+                      <div className="flex items-center space-x-1">
+                        <FaUsers />
+                        <span>Actors</span>
+                      </div>
+                    }
+                  />
+                </Tabs>
+              </NavbarContent>
+
+              <NavbarContent as="div" justify="end">
+                <Dropdown backdrop="transparent" shadow="lg" placement="bottom-end">
+                  <DropdownTrigger>
+                    <Avatar
+                      isBordered
+                      as="button"
+                      className="transition-transform"
+                      color="danger"
+                      name={user?.username}
+                      size="sm"
+                      src={user?.image}
+                    />
+                  </DropdownTrigger>
+                  <DropdownMenu shouldFocusWrap selectionMode="single" aria-label="Profile Actions" color="danger" variant="shadow">
+                    <DropdownItem as={Link} showDivider href={`/user/${user?._id}`} startContent={<FaUserAlt />} key="profile" className="h-14 gap-2 text-black dark:text-white">
+                      <p className="font-semibold capitalize flex items-center">{user?.username}  <span className={user?.verifed == true ? " text-md  ms-1 md:ms-2" : "hidden"}>
+                        {" "}
+                        <MdVerified />
+                      </span></p>
+                      <p className="font-medium ">{user?.email}</p>
+                    </DropdownItem>
+                    <DropdownItem className="text-black dark:text-white" as={Link} href={`/user/${user?._id}`} startContent={<FaHeart />} key="favourites">Favourites</DropdownItem>
+                    <DropdownItem className="text-black dark:text-white" as={Link} href={`/settings`} startContent={<IoSettingsSharp />} key="settings">Settings</DropdownItem>
+                    <DropdownItem startContent={<IoLogOut />} onClick={() => logout()} key="logout" color="danger">
+                      Log Out
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </NavbarContent>
+            </Navbar>
+          </div>
+          : ""
+      }
+
 
 
       <div className=" flex mt-4 justify-center lg:hidden md:hidden ">
@@ -268,7 +276,7 @@ export default function Nav() {
           key="full"
           radius="sm"
           size="sm"
-          color="secondary"
+          color="danger"
           aria-label="Options"
         >
           <Tab
