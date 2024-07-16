@@ -8,7 +8,7 @@ import { BsThreads } from "react-icons/bs";
 const Footer = ({ }: IProps) => {
   return (
     <>
-      <div className="p-6 shadow bg-gray-200 dark:text-white dark:bg-[#181818] backdrop-blur-lg">
+      <div className="p-6 mt-6 shadow bg-gray-200 dark:text-white dark:bg-[#181818] backdrop-blur-lg">
         <div className="flex  flex-col md:flex-row justify-center md:justify-between items-center">
           <div className="space-x-2 mb-2 md:mb-0">
             <Button
