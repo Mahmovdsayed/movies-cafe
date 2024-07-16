@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { Metadata, Viewport } from "next";
+=======
+import type { Metadata , Viewport } from "next";
+>>>>>>> 456cef8a3b984b1d54558ba798ff5bcd570e3b23
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../Providers/Providers";

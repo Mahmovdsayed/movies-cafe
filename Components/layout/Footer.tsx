@@ -72,7 +72,7 @@ const Footer = ({ }: IProps) => {
             </h3>
           </div>
           <div className="mt-2 md:mt-0">
-            <h3 className="text-sm font-medium md:text">Powered by{" "} <span onClick={() => (window.location.href = "https://www.instagram.com/nest.dev")} className="font-bold cursor-pointer">NEST</span></h3>
+            <h3  className="text-sm font-medium md:text">Powered by{" "} <span onClick={() => (window.location.href = "https://www.instagram.com/nest.dev")} className="font-bold cursor-pointer">NEST</span></h3>
           </div>
         </div>
       </div>
