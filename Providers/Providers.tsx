@@ -65,9 +65,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         </div>
         <Provider store={store}>
           <PersistGate loading={<LoadingScreen />} persistor={persistStore(store)}>
-            <ReactLenis root >
+            
               {children}
-            </ReactLenis>
+          
           </PersistGate>
 
         </Provider>
