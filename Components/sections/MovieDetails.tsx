@@ -182,7 +182,7 @@ const MovieDetails = ({ }: Iprops) => {
             </div>
 
             <div className="mx-2 flex flex-col items-center mt-32 md:mt-36 justify-center text-center">
-              <h3 className="font-bold text-4xl md:text-6xl">{mox.title}</h3>
+              <h1 className="font-bold text-4xl md:text-6xl uppercase">{mox.title}</h1>
               <span className=" font-medium mt-3">{mox.tagline}</span>
               <Chip
                 size="sm"
