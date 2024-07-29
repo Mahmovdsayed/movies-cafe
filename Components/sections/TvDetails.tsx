@@ -185,9 +185,9 @@ const TvDetails = ({ }: Iprops) => {
             </div>
 
             <div className="mx-2 flex flex-col items-center mt-32 md:mt-36 justify-center text-center">
-              <h3 className="font-bold text-4xl md:text-6xl uppercase">
+              <h1 className="font-bold text-4xl md:text-6xl uppercase">
                 {mox.original_name}
-              </h3>
+              </h1>
               <span className=" font-medium">{mox.tagline}</span>
               <Chip
                 size="sm"
