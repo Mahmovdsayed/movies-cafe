@@ -81,7 +81,7 @@ export default function HomeSection() {
         <div>
           <h2 className="text-4xl  font-semibold ">User Reviews</h2>
           <p className="text-tiny my-2 md:text-xl text-default-500">See what our users are saying about their experience with Movies Cafe. Read genuine reviews and testimonials from fellow movie enthusiasts.</p>
-          <Link color="danger" className="mb-3" showAnchorIcon href="/signup">Signup now</Link>
+          <Link color="danger" className="mb-3" showAnchorIcon href="/register">Signup now</Link>
           <Reviews />
         </div>
       </div>
