@@ -1,4 +1,4 @@
-import type { Metadata , Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../Providers/Providers";
@@ -11,12 +11,12 @@ import { Analytics } from "@vercel/analytics/react";
 
 const inter = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], });
 export const viewport: Viewport = {
-  themeColor:"#0000FF",
-  colorScheme:"dark"
+  themeColor: "#0000FF",
+  colorScheme: "dark"
 }
 export const metadata: Metadata = {
   metadataBase: new URL('https://moviescafe.vercel.app'),
-  title: "Movies Cafe",
+  title: "Movies Cafe | Explore the World of Movies & TV Shows",
   manifest: "/manifest.json",
   viewport: "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   keywords: ['movies cafe', 'Movies Cafe', 'movies-cafe', 'Depolna', 'depolna'],
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     images: [
       "https://i.ibb.co/QPVXJxS/Slide-16-9-1.png",
     ],
-    title: "Movies Cafe",
+    title: "Movies Cafe | Explore the World of Movies & TV Shows",
     description:
       "Welcome to our cinematic hub! Explore the world of movies and TV shows in a new light with our website powered by TMDb API. Dive into a vast database featuring details about films, actors, ratings, and more. Browse, save your favorite movies, and stay updated with the latest cinematic news. Immerse yourself in the seventh art effortlessly and enjoy a unique cinematic experience through our site!",
     countryName: "Egypt",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Movies Cafe",
+    title: "Movies Cafe | Explore the World of Movies & TV Shows",
     description:
       "Welcome to our cinematic hub! Explore the world of movies and TV shows in a new light with our website powered by TMDb API. Dive into a vast database featuring details about films, actors, ratings, and more. Browse, save your favorite movies, and stay updated with the latest cinematic news. Immerse yourself in the seventh art effortlessly and enjoy a unique cinematic experience through our site!",
     images: [

@@ -1,18 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Link, Button, ButtonGroup, Image, Divider } from "@nextui-org/react";
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRouter } from "next/navigation";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Parallax } from 'swiper/modules';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import Trending from "./Home/Trending";
-import Tvs from "./Home/Tvs";
-import Actorss from "./Home/Actorss";
+import { useRouter } from "next/navigation";
+import { Button, Card, CardBody, CardHeader, Divider, Link } from "@nextui-org/react";
+import Popular from "./home/Popular";
+import PopularTV from "./home/PopularTV";
+import Reviews from "./home/Reviews";
+
 export default function HomeSection() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -47,59 +42,49 @@ export default function HomeSection() {
   useEffect(() => {
     getStaticProps();
   }, [currentPage, language]);
-  return (
-
-    <>
-
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        transition={{ duration: 2 * 0.3 }}
-        variants={{
-          visible: { opacity: 1 },
-          hidden: { opacity: 0 },
-        }}
-      >
-
-        <div className=" my-4">
-          <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
-            parallax={true}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-
-            modules={[Autoplay, Parallax, Pagination, Navigation]}
-            className="mySwiper "
-          >
-            {movies.map((mov) =>
-              <SwiperSlide key={mov.id}>
-                <div className="w-full relative">
-                  <Image
-                    radius="none"
-                    isBlurred
-                    isZoomed
-                    className="sm:h-[400px] lg:h-[600px]  object-contain object-center w-screen "
-                    src={`https://image.tmdb.org/t/p/original${mov.backdrop_path}`}
-                  />
-                  <div className="text-center py-4 text-default-500 text-tiny font-bold" >
-                    {mov.title}
-                  </div>
-                </div>
-              </SwiperSlide>
-
-            )}
-          </Swiper>
+  return <>
+    <div className="text-center md:py-10 mt-3 ">
+      <div className="px-4">
+        <h1 className="text-4xl md:text-6xl font-bold  uppercase mt-6">Explore the World of Movies & TV Shows</h1>
+        <p className="text-sm md:text-xl text-default-500 tracking-tight mt-3">Dive into a vast database featuring details about films, actors, ratings, and more</p>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <Card shadow="sm">
+              <CardHeader className="font-semibold text-lg">Details about movies and actors</CardHeader >
+              <CardBody className="text-sm md:text-medium font-medium">Get comprehensive information about your favorite movies and actors. Discover biographies, filmographies, and ratings for each movie and actor.</CardBody>
+            </Card>
+            <Card shadow="sm">
+              <CardHeader className="font-semibold  text-lg">Save your favorite movies</CardHeader>
+              <CardBody className="text-sm md:text-medium font-medium">Save the movies and TV shows you love so you can easily revisit them anytime and always keep track of the ones that matter to you.</CardBody>
+            </Card>
+            <Card shadow="sm">
+              <CardHeader className="font-semibold  text-lg">Enjoy a unique cinematic experience</CardHeader>
+              <CardBody className="text-sm md:text-medium font-medium">Immerse yourself in a unique and effortless cinematic experience with our user-friendly interface and extensive database of movie details.</CardBody>
+            </Card>
+          </div>
         </div>
-        <Trending />
-        <Divider className="mt-4" />
-        <Tvs />
-        <Divider className="mt-4" />
-        <Actorss />
-      </motion.div>
-    </>
-  );
+        <Divider className="my-4" />
+        <div>
+          <h2 className="text-4xl  font-semibold ">Trending Movies</h2>
+          <p className="text-tiny my-2 md:text-xl text-default-500">Discover the movies that are trending right now. Stay updated with what's hot in the cinema world and find your next favorite film.</p>
+          <Link color="danger" showAnchorIcon href="/movies">Show more</Link>
+          <Popular />
+        </div>
+        <Divider className="my-4" />
+        <div>
+          <h2 className="text-4xl  font-semibold ">Trending TV Shows</h2>
+          <p className="text-tiny my-2 md:text-xl text-default-500">Explore the TV shows that everyone is talking about. Keep up with the latest trends in television and binge-watch the top-rated series.</p>
+          <Link color="danger" showAnchorIcon href="/tv">Show more</Link>
+          <PopularTV />
+        </div>
+        <Divider className="my-4" />
+        <div>
+          <h2 className="text-4xl  font-semibold ">User Reviews</h2>
+          <p className="text-tiny my-2 md:text-xl text-default-500">See what our users are saying about their experience with Movies Cafe. Read genuine reviews and testimonials from fellow movie enthusiasts.</p>
+          <Link color="danger" className="mb-3" showAnchorIcon href="/signup">Signup now</Link>
+          <Reviews />
+        </div>
+      </div>
+    </div>
+  </>
 }
