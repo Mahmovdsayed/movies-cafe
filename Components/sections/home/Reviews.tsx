@@ -6,7 +6,7 @@ import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@n
 const Reviews = ({ }: IProps) => {
     const rev = [{
         id: '1',
-        username: "@mahmoudsaayed",
+        username: "@mahmoodsayed_",
         Name: "Mahmoud Sayed",
         desc: "As a huge TV show fan, I find Movies Cafe to be an invaluable resource. The updates on the latest shows and the ability to track what I've watched is a game-changer. Great site!",
         image: "https://i.pinimg.com/564x/7c/18/0a/7c180abcd16fc89c34268125381343a9.jpg"
@@ -20,10 +20,10 @@ const Reviews = ({ }: IProps) => {
     },
     {
         id: '1',
-        username: "@farahtelebx",
-        Name: "Farah Teleb",
+        username: "@_kareem_saad",
+        Name: "Kareem Saad",
         desc: "Movies Cafe has completely transformed my movie-watching experience. The detailed information about each movie and actor is fantastic, and I love being able to save my favorites. Highly recommend it!",
-        image: "https://i.pinimg.com/564x/b8/0a/d9/b80ad9fd48f0b1e8d404775c495633be.jpg"
+        image: "https://i.pinimg.com/564x/f9/dc/ed/f9dcede4da70259826b18f32c9ef873b.jpg"
     },
     {
         id: '1',
