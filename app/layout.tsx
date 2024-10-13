@@ -57,6 +57,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <meta name='dmca-site-verification' content='MmZEM0lqMmpkU3lqbTh3MFJpOHpMWUswZGduNEJJZTZjMXI3M0RkVXQydz01' />
+      </head>
       <body className={`${inter.className}`}>
         <Providers>
           <Banner />
