@@ -1,102 +1,112 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
+
+export const dynamic = "force-static";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const year = new Date().getFullYear();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+  return (
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-b from-black via-gray-900 to-black text-white overflow-x-hidden">
+
+      {/* Navbar */}
+      <motion.nav
+        className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10"
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+          <a href="/" className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            🎥 <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Movies Cafe</span>
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="hidden md:flex gap-8 text-gray-300">
+            {["Explore", "Community", "About"].map((link) => (
+              <a key={link} href={`/${link.toLowerCase()}`} className="hover:text-white transition">
+                {link}
+              </a>
+            ))}
+          </div>
+          <div className="flex gap-4">
+            <a className="px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition">Login</a>
+            <a className="px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-500 transition shadow-lg shadow-purple-500/30">Sign Up</a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </motion.nav>
+
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center text-center px-6 py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          <h1 className="text-6xl sm:text-7xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient">
+            Your Movie Social Universe
+          </h1>
+          <p className="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
+            Follow friends, discover hidden gems, and dive into cinematic conversations.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+            <a className="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">Explore Now</a>
+            <a className="px-8 py-3 bg-purple-600 font-semibold rounded-full hover:bg-purple-500 transition shadow-lg shadow-purple-500/40">Join the Community</a>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Features Section */}
+      <section className="grid md:grid-cols-3 gap-8 px-6 py-20 max-w-7xl mx-auto">
+        {[
+          { title: "🎬 Discover Movies", desc: "Trending, classics, and hidden gems with rich TMDb data." },
+          { title: "💬 Social Interaction", desc: "Like, comment, follow — your cinematic circle awaits." },
+          { title: "📊 Personalized Feed", desc: "Curated content just for you." },
+        ].map((f, i) => (
+          <motion.div
+            key={f.title}
+            whileHover={{ scale: 1.05 }}
+            className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-xl border border-white/10 hover:border-purple-500 transition"
+          >
+            <h3 className="text-xl font-semibold mb-2">{f.title}</h3>
+            <p className="text-gray-400">{f.desc}</p>
+          </motion.div>
+        ))}
+      </section>
+
+      {/* Trending Movies */}
+      <section className="py-20 px-6 bg-black/40 backdrop-blur-sm">
+        <h2 className="text-3xl font-bold text-center mb-10">🔥 Trending This Week</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+          {["Inception", "Interstellar", "Oppenheimer", "The Batman", "Dune"].map((movie) => (
+            <motion.div
+              key={movie}
+              whileHover={{ scale: 1.05 }}
+              className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg overflow-hidden border border-white/10 hover:border-purple-500 transition"
+            >
+              <div className="h-48 bg-gray-700 flex items-center justify-center text-gray-500 text-sm">Poster</div>
+              <div className="p-4">
+                <h3 className="font-semibold">{movie}</h3>
+                <p className="text-xs text-gray-400">Action • Sci-Fi</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-gradient-to-r from-purple-600 to-pink-600 py-16 text-center">
+        <h2 className="text-3xl font-bold mb-4">Join Movies Cafe Today</h2>
+        <p className="mb-6 text-white/90">Start your cinematic journey now.</p>
+        <a className="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-900 transition">Get Started</a>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black/80 text-gray-400 text-sm py-8 text-center mt-auto border-t border-white/10">
+        <p>© {year} Movies Cafe. All rights reserved.</p>
+        <div className="mt-3 flex justify-center gap-4">
+          <a className="hover:text-white transition">Privacy Policy</a>
+          <a className="hover:text-white transition">Terms</a>
+          <a className="hover:text-white transition">Contact</a>
+        </div>
       </footer>
     </div>
   );
