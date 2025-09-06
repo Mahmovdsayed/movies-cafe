@@ -20,8 +20,10 @@ interface IWatchList {
 
 interface IProps {
     watchList: IWatchList;
+    appearance: string
+
 }
-const AddToWatchList = ({ watchList }: IProps) => {
+const AddToWatchList = ({ watchList, appearance }: IProps) => {
     const [loading, setLoading] = useState(false);
 
     const handleAddToWatchList = async () => {
@@ -54,6 +56,12 @@ const AddToWatchList = ({ watchList }: IProps) => {
             size="sm"
             placement="top"
             radius="lg"
+            className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : appearance === "default"
+                        ? "bg-primary text-white"
+                        : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
             content={
                 <div className="px-1 py-2">
                     <div className="text-small font-bold">Watch later</div>
@@ -61,7 +69,14 @@ const AddToWatchList = ({ watchList }: IProps) => {
                 </div>
             }
         >
-            <Button onPress={handleAddToWatchList} isLoading={loading} isDisabled={loading} size="sm" as="div" isIconOnly className="bg-white text-black" radius="full" variant="flat">
+            <Button className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : appearance === "default"
+                        ? "bg-primary text-white"
+                        : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
+
+                onPress={handleAddToWatchList} isLoading={loading} isDisabled={loading} size="sm" as="div" isIconOnly radius="full" variant="flat">
                 <MdWatchLater />
             </Button>
         </Tooltip>

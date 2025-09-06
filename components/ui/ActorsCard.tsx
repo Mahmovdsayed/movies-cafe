@@ -12,7 +12,7 @@ interface IProps {
 }
 const ActorsCard = ({ data }: IProps) => {
     const router = useRouter();
-
+    const appearance = useAppSelector((state) => state.appearance.theme)
     const imageSize = useAppSelector((state) => state.imageSize.size)
     const image = data.profile_path == null ? NotFoundUserImage : ` ${TMDB_CONFIG.API_IMAGE_URL}${imageSize}${data.profile_path}`
 
@@ -46,7 +46,7 @@ const ActorsCard = ({ data }: IProps) => {
                 isZoomed
                 draggable="false"
                 alt={data.name}
-                className="w-full bg-cover bg-center object-cover h-full object-center filter grayscale hover:grayscale-0 transition z-0"
+                className={` w-full h-full bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                 src={image}
             />
         </Card>

@@ -1,4 +1,4 @@
-const baseURL = "https://moviescafe.vercel.app";
+const baseURL = "http://localhost:3000";
 const TMDB_API_URL = "https://api.themoviedb.org/3";
 const cardNotFoundImage =
   "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1755126920/IMAGE_NOT_FOUND_zlpppn.png";

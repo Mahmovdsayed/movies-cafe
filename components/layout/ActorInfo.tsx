@@ -14,6 +14,7 @@ interface IProps {
     id: string
 }
 const ActorInfo = ({ id }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme);
     const imageSize = useAppSelector((state) => state.imageSize.size);
 
     const { data, isLoading, isError } = useQuery({
@@ -33,7 +34,7 @@ const ActorInfo = ({ id }: IProps) => {
     return <>
         <div className="relative w-full">
             <div
-                className="absolute inset-0 bg-cover bg-center filter grayscale hover:grayscale-0 transition"
+                className={`absolute inset-0 bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                 style={{ backgroundImage: `url(${data?.profile_path === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/w200${data?.profile_path}`})` }}
             />
             <div className="absolute inset-0 bg-black/70 backdrop-blur-2xl" />
@@ -44,7 +45,7 @@ const ActorInfo = ({ id }: IProps) => {
                         <Image
                             src={data?.profile_path === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/${imageSize}${data?.profile_path}`}
                             alt={data?.name}
-                            className="w-40 h-60 md:48 md:h-72 lg:w-64 lg:h-96 object-cover rounded-lg z-10 shadow-xl filter grayscale hover:grayscale-0 transition"
+                            className={`w-40 h-60 md:48 md:h-72 lg:w-64 lg:h-96 object-cover rounded-lg z-10 shadow-xl ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                             radius="lg"
                         />
                     </div>

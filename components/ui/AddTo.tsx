@@ -8,6 +8,7 @@ import AddToFavorites from "./AddToFavorites";
 import AddToWatchList from "./AddToWatchList";
 import RepostMovie from "./RepostMovie";
 import ShareButton from "./ShareButton";
+import { useAppSelector } from "@/redux/hook";
 
 interface IProps {
     Ai?: boolean
@@ -22,8 +23,9 @@ interface IProps {
     }
 }
 const AddTo = ({ Ai = true, favorites }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme)
     return <>
-        <AddToFavorites favorite={{
+        <AddToFavorites appearance={appearance} favorite={{
             movieID: favorites.movieID,
             movieTitle: favorites.movieTitle,
             moviePoster: favorites.moviePoster,
@@ -34,6 +36,7 @@ const AddTo = ({ Ai = true, favorites }: IProps) => {
         }}
         />
         <AddToWatchList
+            appearance={appearance}
             watchList={{
                 movieID: favorites.movieID,
                 movieTitle: favorites.movieTitle,
@@ -57,6 +60,7 @@ const AddTo = ({ Ai = true, favorites }: IProps) => {
             }
         >
             <RepostMovie
+                appearance={appearance}
                 movie={{
                     movieID: favorites.movieID,
                     movieTitle: favorites.movieTitle,
@@ -70,7 +74,7 @@ const AddTo = ({ Ai = true, favorites }: IProps) => {
 
         </Tooltip>
         {Ai && (
-            <ShareButton />
+            <ShareButton appearance={appearance} />
         )}
         {Ai && (
             <Tooltip

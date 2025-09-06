@@ -21,7 +21,6 @@ const TvsLayout = ({ queryFn, queryKey, isPages = true }: IProps) => {
         queryKey: `${queryKey}-${currentPage}`,
         page: currentPage,
     });
-    console.log(data)
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data.</div>;

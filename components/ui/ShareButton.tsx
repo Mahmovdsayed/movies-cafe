@@ -6,8 +6,10 @@ import { Button, Tooltip } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuShare } from "react-icons/lu";
-
-const ShareButton = () => {
+interface IProps {
+    appearance: string
+}
+const ShareButton = ({ appearance }: IProps) => {
     const pathname = usePathname();
     const [fullUrl, setFullUrl] = useState("");
 
@@ -38,7 +40,12 @@ const ShareButton = () => {
             size="sm"
             placement="top"
             radius="lg"
-
+            className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : appearance === "default"
+                        ? "bg-primary text-white"
+                        : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
             content={<div className="px-1 py-2">
                 <div className="text-small font-bold">Share</div>
                 <div className="text-tiny">Share this movie with your friends via social media.</div>
@@ -47,7 +54,12 @@ const ShareButton = () => {
         >
             <Button
                 onPress={handleShare}
-                size="sm" as="div" isIconOnly className="bg-white text-black" radius="full" variant="flat">
+                size="sm" as="div" isIconOnly className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                        ? "bg-black text-white dark:bg-white dark:text-black"
+                        : appearance === "default"
+                            ? "bg-primary text-white"
+                            : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`} radius="full" variant="flat">
                 <LuShare />
             </Button >
         </Tooltip >

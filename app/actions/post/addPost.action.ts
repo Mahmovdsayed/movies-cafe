@@ -14,7 +14,7 @@ export async function addPostAction(formData: FormData) {
 
     const currentUser = await User.findById(user.id);
     if (!currentUser)
-      return errResponse("You must be logged in to add to Watchlist");
+      return errResponse("You must be logged in to add to your profile!");
 
     const data = {
       movieID: String(formData.get("movieID")),
@@ -25,8 +25,7 @@ export async function addPostAction(formData: FormData) {
       movieOverview: String(formData.get("movieOverview")),
       movieType: String(formData.get("movieType")),
       type: String(formData.get("type")),
-      title: String(formData.get("title")),
-      description: String(formData.get("description")),
+      content: String(formData.get("content")),
     };
 
     try {
@@ -47,7 +46,7 @@ export async function addPostAction(formData: FormData) {
       "Post added successfully to your profile and discover page!"
     );
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return errResponse("Failed to add post");
   }
 }

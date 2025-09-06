@@ -23,14 +23,15 @@ const Credits = ({ type, id }: IProps) => {
     isError && <h3>Error loading recommendations</h3>
 
     return <>
+        { }
         <SwiperHeader
             title={type === "movie_credits" ? "Movies" : "TV Shows"}
             description={`Explore the ${type === "movie_credits" ? "movies" : "TV shows"} featuring this actor and discover their diverse roles and performances.`}
             button={false}
-            // buttonText="View All"
-            // buttonLink={`/actors/actor/${id}/${type === "movie_credits" ? "movies" : "tv"}`}
+        // buttonText="View All"
+        // buttonLink={`/actors/actor/${id}/${type === "movie_credits" ? "movies" : "tv"}`}
         />
-        {data && data.results && data.results.length === 0 && (
+        {data && data.cast && data.cast.length === 0 && (
             <div className="text-center text-default-500 my-4">
                 No {type === "movie_credits" ? "movies" : "TV shows"} available.
             </div>

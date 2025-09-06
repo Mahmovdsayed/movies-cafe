@@ -12,12 +12,14 @@ import { TMDB_CONFIG } from "@/constant/config";
 import { cardNotFoundImage } from "@/constant/statics";
 import { Card, Image } from "@heroui/react";
 import { useRef } from "react";
+import { useAppSelector } from "@/redux/hook";
 
 interface IProps {
     id: string
 }
 
 const Seasons = ({ id }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme)
     const router = useRouter();
     const swiperRef = useRef<any>(null);
 
@@ -76,7 +78,7 @@ const Seasons = ({ id }: IProps) => {
                                             draggable="false"
                                             loading="lazy"
                                             src={season.poster_path == null ? cardNotFoundImage : `${TMDB_CONFIG.API_IMAGE_URL}${"w500"}${season.poster_path}`}
-                                            className="size-full object-cover object-center z-0 filter grayscale hover:grayscale-0 transition"
+                                            className={`size-full object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                                             alt={season.name}
                                         />
                                     </Card>

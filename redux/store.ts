@@ -4,6 +4,7 @@ import imageSizeReducer from "./slices/imageSizeSlice";
 import moviesSortByReducer from "./slices/moviesSortSlice";
 import movieFiltersReducer from "./slices/movieFiltersSlice";
 import userReducer from "./slices/userSlice";
+import appearanceSliceReducer from "./slices/appearanceSlice";
 
 import storage from "./storage";
 
@@ -12,12 +13,13 @@ const rootReducer = combineReducers({
   sortBy: moviesSortByReducer,
   movieFilters: movieFiltersReducer,
   user: userReducer,
+  appearance: appearanceSliceReducer,
 });
 
 const persistConfig = {
   key: "global",
   storage,
-  whitelist: ["imageSize", "sortBy", "movieFilters", "user"],
+  whitelist: ["imageSize", "sortBy", "movieFilters", "user", "appearance"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

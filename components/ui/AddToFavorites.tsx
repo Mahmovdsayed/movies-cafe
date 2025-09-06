@@ -18,9 +18,10 @@ interface IFavorite {
 
 interface IProps {
     favorite: IFavorite;
+    appearance: string
 }
 
-const AddToFavorites = ({ favorite }: IProps) => {
+const AddToFavorites = ({ favorite, appearance }: IProps) => {
     const [loading, setLoading] = useState(false);
 
     const handleAddToFavorites = async () => {
@@ -52,6 +53,12 @@ const AddToFavorites = ({ favorite }: IProps) => {
         <Tooltip
             size="sm"
             placement="top"
+            className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : appearance === "default"
+                        ? "bg-primary text-white"
+                        : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
             radius="lg"
             content={
                 <div className="px-1 py-2">
@@ -65,7 +72,12 @@ const AddToFavorites = ({ favorite }: IProps) => {
                 as="div"
                 size="sm"
                 isIconOnly
-                className="bg-white text-black"
+                className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                        ? "bg-black text-white dark:bg-white dark:text-black"
+                        : appearance === "default"
+                            ? "bg-primary text-white"
+                            : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
                 radius="full"
                 variant="flat"
                 onPress={handleAddToFavorites}

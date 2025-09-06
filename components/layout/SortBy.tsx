@@ -56,7 +56,6 @@ const SortBy = ({ type = "movie" }: { type?: "movie" | "tv" }) => {
                 label="Sort By"
                 size="sm"
                 radius="sm"
-                color="default"
                 className="max-w-sm"
                 variant="underlined"
                 selectedKeys={[String(sort)]}

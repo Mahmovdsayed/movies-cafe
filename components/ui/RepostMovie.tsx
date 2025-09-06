@@ -5,7 +5,7 @@ import { RepostInitialState } from "@/helpers/initialState";
 import useFormHandler from "@/hooks/useFormHandler";
 import useHandleResponse from "@/hooks/useHandleResponse";
 import { RepostValidationSchema } from "@/validations/post/RepostValidation";
-import { Button } from "@heroui/react";
+import { Button, Tooltip } from "@heroui/react";
 import { useState } from "react";
 import { FaRepeat } from "react-icons/fa6";
 import DrawerModel from "./DrawerModel";
@@ -26,9 +26,11 @@ interface IMovie {
 
 interface IProps {
     movie: IMovie;
+    appearance: string
+
 
 }
-const RepostMovie = ({ movie }: IProps) => {
+const RepostMovie = ({ movie, appearance }: IProps) => {
     const [open, setOpen] = useState(false)
     const handleResponse = useHandleResponse();
 
@@ -41,8 +43,7 @@ const RepostMovie = ({ movie }: IProps) => {
         formData.append("movieBanner", movie.movieBanner);
         formData.append("movieType", movie.movieType);
         formData.append("movieOverview", movie.movieOverview);
-        formData.append("title", values.title);
-        formData.append("description", values.description);
+        formData.append("content", values.content);
         formData.append("type", "repost");
 
         await handleResponse(addPostAction(formData), formik.resetForm);
@@ -50,16 +51,39 @@ const RepostMovie = ({ movie }: IProps) => {
     })
 
     return <>
-        <Button
-            onPress={() => setOpen(true)}
+        <Tooltip
             size="sm"
-            as="div"
-            isIconOnly
-            className="bg-white text-black"
-            radius="full"
-            variant="flat">
-            <FaRepeat />
-        </Button >
+            placement="top"
+            className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                    ? "bg-black text-white dark:bg-white dark:text-black"
+                    : appearance === "default"
+                        ? "bg-primary text-white"
+                        : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
+            radius="lg"
+            content={
+                <div className="px-1 py-2">
+                    <div className="text-small font-bold">Repost Movie</div>
+                    <div className="text-tiny">Share this movie with your friends.</div>
+                </div>
+            }
+        >
+            <Button
+                className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                        ? "bg-black text-white dark:bg-white dark:text-black"
+                        : appearance === "default"
+                            ? "bg-primary text-white"
+                            : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
+                onPress={() => setOpen(true)}
+                size="sm"
+                as="div"
+                isIconOnly
+                radius="full"
+                variant="flat">
+                <FaRepeat />
+            </Button >
+        </Tooltip>
 
         <DrawerModel
             title={`Repost ${movie.movieTitle}`}
@@ -75,33 +99,18 @@ const RepostMovie = ({ movie }: IProps) => {
         >
             <form className="w-full flex mx-auto flex-col gap-3" onSubmit={formik.handleSubmit} >
                 <FormMotion delay={0.2}>
-                    <FormInput
-                        type="text"
-                        name="title"
-                        label="Title"
-                        placeholder="Enter your title"
-                        value={formik.values.title}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        description={"Add a title to your repost."}
-                    />
-                    {formik.touched.title && formik.errors.title && (
-                        <NestErrors title={formik.errors.title} color='default' />
-                    )}
-                </FormMotion>
-                <FormMotion delay={0.3}>
                     <FormTextArea
-                        name="description"
-                        label="Description"
-                        placeholder="Enter your description"
-                        value={formik.values.description}
+                        name="content"
+                        label="Content"
+                        placeholder="Enter your Content"
+                        value={formik.values.content}
                         onChange={formik.handleChange}
                         isRequired
                         onBlur={formik.handleBlur}
-                        description={"Add a description to your repost."}
+                        description={"Add a content to your repost."}
                     />
-                    {formik.touched.description && formik.errors.description && (
-                        <NestErrors title={formik.errors.description} color='default' />
+                    {formik.touched.content && formik.errors.content && (
+                        <NestErrors title={formik.errors.content} color='default' />
                     )}
                 </FormMotion>
             </form>

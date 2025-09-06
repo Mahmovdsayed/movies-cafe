@@ -16,9 +16,11 @@ import { motion } from "framer-motion";
 import { formatVoteAverage } from "@/functions/formatVoteAverage";
 import { IoIosArrowBack, IoIosArrowForward, IoMdStar } from "react-icons/io";
 import { cardNotFoundImage } from "@/constant/statics";
+import { useAppSelector } from "@/redux/hook"
 
 
 const SwiperCard = memo(({ type, data, time, isActor = false }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme)
     const router = useRouter();
     const handleClick = (movie_id: any, type: any) => {
         if (type === "tv") {
@@ -38,24 +40,44 @@ const SwiperCard = memo(({ type, data, time, isActor = false }: IProps) => {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex justify-between items-center  mb-3">
             <Swiper
+                className="w-full"
                 modules={[Autoplay]}
                 spaceBetween={10}
-                autoplay={{
-                    delay: time,
-                    disableOnInteraction: false
-                }}
-                autoFocus
-                loop={true}
-                onSwiper={(swiper) => swiperRef.current = swiper}
+                autoplay={{ delay: time, disableOnInteraction: false }}
+                loop={(data?.data?.[isActor ? "cast" : "results"]?.length ?? 0) > 4}
+                watchOverflow={true}
                 breakpoints={{
-                    0: { slidesPerView: 1 },
-                    640: { slidesPerView: 2 },
-                    1024: { slidesPerView: 4 },
+                    0: {
+                        slidesPerView: Math.min(
+                            1,
+                            (data?.data?.[isActor ? "cast" : "results"]?.length ?? 1)
+                        ),
+                    },
+                    640: {
+                        slidesPerView: Math.min(
+                            2,
+                            (data?.data?.[isActor ? "cast" : "results"]?.length ?? 2)
+                        ),
+                    },
+
+                    1024: {
+                        slidesPerView: Math.min(
+                            3,
+                            (data?.data?.[isActor ? "cast" : "results"]?.length ?? 3)
+                        ),
+
+                    },
+                    1280: {
+                        slidesPerView: Math.min(
+                            4,
+                            (data?.data?.[isActor ? "cast" : "results"]?.length ?? 4)
+                        ),
+                    },
                 }}
             >
 
                 {data?.data?.[isActor ? "cast" : "results"]?.map((tr: any, index: number) =>
-                    <SwiperSlide key={index} style={{ width: 'auto' }}>
+                    <SwiperSlide key={index}>
 
                         <div onClick={() => handleClick(tr.id, type)}>
                             <Card className="w-full p-0 m-0 md:w-full md:h-[220px] cursor-pointer" shadow="none">
@@ -66,7 +88,7 @@ const SwiperCard = memo(({ type, data, time, isActor = false }: IProps) => {
                                     draggable="false"
                                     loading="lazy"
                                     src={tr.backdrop_path == null ? cardNotFoundImage : `${TMDB_CONFIG.API_IMAGE_URL}${"w500"}${tr.backdrop_path}`}
-                                    className="size-full object-cover object-center z-0 filter grayscale hover:grayscale-0 transition"
+                                    className={` w-full h-full bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                                     alt={type === "tv" ? tr.name : tr.title}
                                 />
                             </Card>

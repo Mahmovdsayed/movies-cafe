@@ -1,6 +1,7 @@
 'use client'
 import { TMDB_CONFIG } from "@/constant/config";
 import { NotFoundUserImage } from "@/constant/statics";
+import { useAppSelector } from "@/redux/hook";
 import { Cast } from "@/types/cast.types";
 import { Card, CardBody, CardHeader, Image } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -10,6 +11,7 @@ interface IProps {
     type?: "movie" | "tv"
 }
 const CastCard = ({ data, type = "movie" }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme)
     const router = useRouter();
     const handleClick = () => {
         router.push(`/actors/actor/${data.id}`)
@@ -21,7 +23,7 @@ const CastCard = ({ data, type = "movie" }: IProps) => {
                     src={data.profile_path == null ? NotFoundUserImage : ` ${TMDB_CONFIG.API_IMAGE_URL}w200${data.profile_path}`}
                     alt={data.name}
                     radius="full"
-                    className=" h-[100px] w-[100px] object-center object-cover filter grayscale hover:grayscale-0 transition"
+                    className={`h-[100px] w-[100px] bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                 />
             </CardHeader>
             <CardBody>

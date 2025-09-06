@@ -29,12 +29,13 @@ interface IProps {
 }
 
 const MovieHeader = ({ type, id, banner, title, description, poster, genres, runtime, vote_average, release_date, original_language, production_countries, spoken_languages, status, tagline, homepage }: IProps) => {
+    const appearance = useAppSelector((state) => state.appearance.theme);
     const imageSize = useAppSelector((state) => state.imageSize.size);
     return (
         <div className="relative w-full">
             <div
-                className="absolute inset-0 bg-cover bg-center filter grayscale hover:grayscale-0 transition"
-                style={{ backgroundImage: `url(${banner === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/w300${banner}`})` }}
+                className={`absolute inset-0 bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
+                style={{ backgroundImage: `url(${banner === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/w200${banner}`})` }}
             />
             <div className="absolute inset-0 bg-black/70 backdrop-blur-2xl" />
 
@@ -44,7 +45,7 @@ const MovieHeader = ({ type, id, banner, title, description, poster, genres, run
                         <Image
                             src={poster === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/${imageSize}${poster}`}
                             alt={title}
-                            className="w-40 h-60 md:48 md:h-72 lg:w-64 lg:h-96 object-cover rounded-lg z-10 shadow-xl filter grayscale hover:grayscale-0 transition"
+                            className={`w-40 h-60 md:48 md:h-72 lg:w-64 lg:h-96 object-cover rounded-lg z-10 shadow-xl ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                             radius="lg"
                         />
                     </div>

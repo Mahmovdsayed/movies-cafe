@@ -17,6 +17,8 @@ import { FaFilter } from "react-icons/fa";
 import { RiResetLeftFill } from "react-icons/ri";
 
 const MoviesFilters = () => {
+    const appearance = useAppSelector((state) => state.appearance.theme)
+
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const [primaryReleaseYear, setPrimaryReleaseYear] = React.useState("");
@@ -57,6 +59,12 @@ const MoviesFilters = () => {
                 color="default"
                 size="md"
                 isIconOnly
+                className={`whitespace-nowrap 
+                        ${appearance === "blackWhite"
+                        ? "bg-black text-white dark:bg-white dark:text-black"
+                        : appearance === "default"
+                            ? "bg-primary text-white"
+                            : appearance === "blossom" ? "bg-pink-500 text-white" : ""}`}
                 onPress={onOpen}
             >
                 <FiFilter />

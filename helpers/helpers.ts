@@ -268,6 +268,7 @@ const getTimeSince = (createdAt: string | Date | undefined) => {
 
   return `Member since: ${diffInSeconds} seconds ago`;
 };
+
 export {
   LogoutFunc,
   validateImageFile,

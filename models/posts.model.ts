@@ -18,8 +18,7 @@ const postSchema = new Schema(
     movieType: { type: String, enum: ["movie", "tv"], default: null },
 
     type: { type: String, enum: ["post", "repost"], required: true },
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+    content: { type: String, required: true },
 
     likes: [{ type: Schema.Types.ObjectId, ref: "Likes" }],
     comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],

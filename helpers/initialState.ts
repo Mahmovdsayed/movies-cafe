@@ -24,8 +24,7 @@ export const imageUploadInitialState = {
 };
 
 export const RepostInitialState = {
-  title: "",
-  description: "",
+  content: "",
 };
 
 export const PostInitialState = {

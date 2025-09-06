@@ -1,19 +1,21 @@
 'use client'
 import { NotFoundUserImage } from "@/constant/statics";
 import { Profile } from "@/types/profile.types";
-import { Button, Chip, Image } from "@heroui/react";
+import { Chip, Image } from "@heroui/react";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { MdOutlineLanguage } from "react-icons/md";
 import { motion } from "framer-motion";
-
+import { useAppSelector } from "@/redux/hook";
+import { formatDate } from "@/functions/formatDate";
 interface IProps {
     profile: Profile | null;
 }
 
 const ProfileHeader = ({ profile }: IProps) => {
-    if (!profile) return null;
+    const appearance = useAppSelector((state) => state.appearance.theme);
 
+    if (!profile) return null;
     const avatarUrl =
         profile.avatar?.url === null ? NotFoundUserImage : profile.avatar.url;
 
@@ -26,10 +28,10 @@ const ProfileHeader = ({ profile }: IProps) => {
     return (
         <div className="relative w-full">
             <div
-                className="absolute inset-0 bg-cover bg-center filter grayscale brightness-150"
+                className={`absolute inset-0 bg-cover bg-center object-cover object-center z-0  ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                 style={{ backgroundImage: `url(${avatarUrl})` }}
             />
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-2xl" />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-xl" />
 
             <div className="container mx-auto w-full px-4">
                 <motion.div
@@ -47,7 +49,7 @@ const ProfileHeader = ({ profile }: IProps) => {
                         <Image
                             src={avatarUrl}
                             alt={profile.name}
-                            className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover rounded-2xl shadow-xl filter grayscale hover:grayscale-0 transition-all duration-500"
+                            className={`w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover rounded-2xl shadow-xl ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                             draggable="false"
                         />
                     </motion.div>
@@ -76,7 +78,7 @@ const ProfileHeader = ({ profile }: IProps) => {
 
                         <motion.p
                             variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-                            className="text-gray-300 text-sm md:text-base"
+                            className="text-default-600 font-medium text-sm md:text-base"
                         >
                             @{profile.userName}
                         </motion.p>
@@ -124,7 +126,7 @@ const ProfileHeader = ({ profile }: IProps) => {
                                     radius="full"
                                     className="space-x-1 brightness-90"
                                 >
-                                    {birthdayDate}
+                                    {formatDate(profile.birthday)}
                                 </Chip>
                             )}
                         </motion.div>

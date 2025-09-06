@@ -16,6 +16,7 @@ interface IProps {
 }
 const SeasonInfo = ({ seasonID }: IProps) => {
     const imageSize = useAppSelector((state: any) => state.imageSize.size);
+    const appearance = useAppSelector((state: any) => state.appearance.theme);
 
     const pathname = usePathname();
     const segments = pathname.split("/");
@@ -96,7 +97,7 @@ const SeasonInfo = ({ seasonID }: IProps) => {
                                                 draggable="false"
                                                 removeWrapper
                                                 alt={data.name}
-                                                className="w-full sm:w-2/5 object-cover rounded-lg filter grayscale hover:grayscale-0 transition"
+                                                className={`"w-full sm:w-2/5 object-cover rounded-lg" ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                                                 src={
                                                     episode.still_path == null
                                                         ? cardNotFoundImage
