@@ -10,8 +10,7 @@ const userPostsSchemaValidation = yup.object().shape({
   movieOverview: yup.string().nullable(),
 
   type: yup.string().oneOf(["post", "repost"]).required(),
-  title: yup.string().required(),
-  description: yup.string().required(),
+  content: yup.string().required(),
 });
 
 export default userPostsSchemaValidation;

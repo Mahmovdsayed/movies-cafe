@@ -19,6 +19,8 @@ const FormTextArea = ({ isRequired, name, description, label, placeholder, onCha
             onBlur={onBlur}
             name={name}
             value={value}
+            isClearable
+            onClear={() => onChange({ target: { name, value: "" } } as React.ChangeEvent<HTMLInputElement>)}
             variant="faded"
             color="default"
             labelPlacement="inside"

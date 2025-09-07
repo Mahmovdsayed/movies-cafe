@@ -46,7 +46,7 @@ const DrawerModel = ({
     startContent
 }: DashBoardModalProps) => {
     const commonProps = {
-        scrollBehavior: "inside" as const,
+        scrollBehavior: "outside" as const,
         isKeyboardDismissDisabled: true,
         className: "ios-no-zoom",
         shadow: "sm" as const,

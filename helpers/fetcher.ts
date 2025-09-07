@@ -30,4 +30,20 @@ const getUserData = async (url: string, tag: string) => {
   })();
 };
 
-export { getUserData };
+const generateAiResponse = async (url: string, body: any) => {
+  const token = await userToken();
+  if (!token) return null;
+  try {
+    const { data } = await NestApi.post(url, body, {
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `userToken=${token}`,
+      },
+    });
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export { getUserData, generateAiResponse };

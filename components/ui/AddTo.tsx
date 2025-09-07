@@ -9,6 +9,7 @@ import AddToWatchList from "./AddToWatchList";
 import RepostMovie from "./RepostMovie";
 import ShareButton from "./ShareButton";
 import { useAppSelector } from "@/redux/hook";
+import AiGeneratedContent from "./AiGeneratedContent";
 
 interface IProps {
     Ai?: boolean
@@ -77,20 +78,18 @@ const AddTo = ({ Ai = true, favorites }: IProps) => {
             <ShareButton appearance={appearance} />
         )}
         {Ai && (
-            <Tooltip
-                size="sm"
-                placement="top"
-                radius="lg"
-                content={<div className="px-1 py-2">
-                    <div className="text-small font-bold">Ask AI</div>
-                    <div className="text-tiny">Ask AI about this movie (Beta).</div>
-                </div >
-                }
-            >
-                <Button size="sm" as="div" className="bg-white text-black" isIconOnly radius="full" variant="flat">
-                    <BsStars />
-                </Button>
-            </Tooltip>
+            <AiGeneratedContent
+                movie={{
+                    movieID: favorites.movieID,
+                    movieTitle: favorites.movieTitle,
+                    moviePoster: favorites.moviePoster,
+                    movieReleaseDate: favorites.movieReleaseDate,
+                    movieBanner: favorites.movieBanner,
+                    movieType: favorites.type,
+                    movieOverview: favorites.movieOverview,
+                }}
+                appearance={appearance}
+            />
         )}
     </>;
 };

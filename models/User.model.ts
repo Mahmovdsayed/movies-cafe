@@ -18,7 +18,7 @@ const userSchema = new Schema(
     otpExpiry: { type: Date, default: null },
     isVerified: { type: Boolean, default: false },
     aiCounter: { type: Number, default: 0, max: 3, min: 0 },
-    aiContent: [{ content: { type: String, trim: true } }],
+    lastAICounterReset: { type: Date, default: new Date() },
     favorites: [
       {
         type: Schema.Types.ObjectId,

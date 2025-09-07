@@ -6,13 +6,16 @@ import { setImageSize } from "@/redux/slices/imageSizeSlice";
 import { Button, Divider, Select, SelectItem } from "@heroui/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { FaImage, FaMoon, FaSun } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
+import { FaImage, FaMoon, FaRobot, FaSun } from "react-icons/fa";
+import { IoLanguage, IoLogOut } from "react-icons/io5";
 import { RiColorFilterAiFill, RiColorFilterAiLine } from "react-icons/ri";
 import { PiButterflyDuotone } from "react-icons/pi";
 import { setAppearance } from "@/redux/slices/appearanceSlice";
+import { setAiLang, setStyle } from "@/redux/slices/aiSlice";
 
 const Settings = () => {
+    const aiLang = useAppSelector((state) => state.ai.aiLang);
+    const style = useAppSelector((state) => state.ai.style);
     const imgSize = useAppSelector((state) => state.imageSize.size)
     const appearance = useAppSelector((state) => state.appearance.theme)
     const { isUser } = useIsUser();
@@ -78,6 +81,48 @@ const Settings = () => {
             </div>
         </div>
 
+        {isUser && (
+            <>
+                <Divider className="my-8" />
+                <div className="flex flex-col">
+                    <h3 className="text-lg font-semibold">AI Response Settings</h3>
+                    <p className="text-sm md:text-base text-default-500">
+                        Customize how your AI responds — choose the language and the style that fits your experience.
+                    </p>
+                    <div className="flex flex-col md:flex-row items-center mt-4 gap-2">
+                        <Select
+                            className="max-w-xl"
+                            startContent={<IoLanguage />}
+                            variant="faded"
+                            placeholder="Please Select Language"
+                            selectedKeys={[aiLang]}
+                            onChange={(e) => dispatch(setAiLang(e.target.value))}
+                            description={`Choose the language for AI responses. This setting affects the language of AI-generated text and voice interactions.`}
+                            label="AI Response Language"
+                        >
+                            <SelectItem key={"en"}>English</SelectItem>
+                            <SelectItem key={"ar"}>Arabic</SelectItem>
+                        </Select>
+                        <Select
+                            className="max-w-xl"
+                            variant="faded"
+                            startContent={<FaRobot />}
+                            placeholder="Please Select Style"
+                            selectedKeys={[style]}
+                            onChange={(e) => dispatch(setStyle(e.target.value))}
+                            description={`Choose the style of AI responses. This setting influences the tone, formality, and overall feel of the AI's communication.`}
+                            label="AI Response Style"
+                        >
+                            <SelectItem key={"trailer"}>Trailer</SelectItem>
+                            <SelectItem key={"critic"}>Critic</SelectItem>
+                            <SelectItem key={"emotional"}>Emotional</SelectItem>
+                            <SelectItem key={"action"}>Action</SelectItem>
+                        </Select>
+                    </div>
+
+                </div>
+            </>
+        )}
 
         {isUser && (
             <>

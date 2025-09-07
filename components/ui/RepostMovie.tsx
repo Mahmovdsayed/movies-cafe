@@ -10,7 +10,6 @@ import { useState } from "react";
 import { FaRepeat } from "react-icons/fa6";
 import DrawerModel from "./DrawerModel";
 import FormMotion from "../motion/FormMotion";
-import FormInput from "./FormInput";
 import FormTextArea from "./FormTextArea";
 import NestErrors from "./NestErrors";
 
@@ -27,8 +26,6 @@ interface IMovie {
 interface IProps {
     movie: IMovie;
     appearance: string
-
-
 }
 const RepostMovie = ({ movie, appearance }: IProps) => {
     const [open, setOpen] = useState(false)
@@ -105,6 +102,7 @@ const RepostMovie = ({ movie, appearance }: IProps) => {
                         placeholder="Enter your Content"
                         value={formik.values.content}
                         onChange={formik.handleChange}
+
                         isRequired
                         onBlur={formik.handleBlur}
                         description={"Add a content to your repost."}
