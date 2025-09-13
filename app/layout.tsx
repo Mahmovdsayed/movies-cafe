@@ -27,9 +27,7 @@ export const metadata: Metadata = {
   publisher: "Mahmoud Sayed",
   applicationName: "Movies Cafe",
   referrer: "origin-when-cross-origin",
-  verification: {
-    google: "ulOMjNVtclcy6UefW0I5tTarzephutZ_D_j2ied0dTw",
-  },
+
 
   alternates: {
     canonical: "https://moviescafe.vercel.app/",
@@ -93,6 +91,9 @@ export default async function RootLayout({
   const profile: Profile = await getUserData("/profile", "user-info");
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning className="light scrollbar-thin scrollbar-dark">
+      <head>
+        <meta name="google-site-verification" content="ulOMjNVtclcy6UefW0I5tTarzephutZ_D_j2ied0dTw" />
+      </head>
       <body className={`${inter.variable} antialiased overflow-x-hidden`}>
         <Providers>
           <SmoothScroll>
