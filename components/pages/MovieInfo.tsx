@@ -20,7 +20,7 @@ const MovieInfo = ({ id, type }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    if (isLoading) return <LoadingData />
+    if (isLoading) return null;
     if (isError) return <h3>Error loading movie details</h3>
 
     return <>

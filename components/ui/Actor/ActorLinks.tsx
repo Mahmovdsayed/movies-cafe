@@ -20,7 +20,7 @@ const ActorLinks = ({ id }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    if (isLoading) return <LoadingData />;
+    if (isLoading) return null;
     if (isError) return <h3>Error loading actor links</h3>;
 
 
