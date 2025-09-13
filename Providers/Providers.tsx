@@ -30,7 +30,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                 <Provider store={store}>
                     <NextThemesProvider
                         attribute="class"
-                        defaultTheme="dark"
+                        defaultTheme="light"
                         enableSystem={false}
                         storageKey="nest"
                     >

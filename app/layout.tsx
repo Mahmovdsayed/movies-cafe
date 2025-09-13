@@ -15,7 +15,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const metadataBase = new URL('https://alquran-player.vercel.app/');
+const metadataBase = new URL('https://moviescafe.vercel.app/');
 
 export const metadata: Metadata = {
   metadataBase,
@@ -93,7 +93,6 @@ export default async function RootLayout({
   const profile: Profile = await getUserData("/profile", "user-info");
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning className="light scrollbar-thin scrollbar-dark">
-
       <body className={`${inter.variable} antialiased overflow-x-hidden`}>
         <Providers>
           <SmoothScroll>
