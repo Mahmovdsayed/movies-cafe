@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
   },
   output: "standalone",
   experimental: {
-    scrollRestoration: true,
+    // scrollRestoration: true,
     optimizeCss: true,
     optimizeServerReact: true,
     appDocumentPreloading: true,
