@@ -20,7 +20,7 @@ const postSchema = new Schema(
     type: { type: String, enum: ["post", "repost"], required: true },
     content: { type: String, required: true },
 
-    likes: [{ type: Schema.Types.ObjectId, ref: "Likes" }],
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
     comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],
   },
   {

@@ -18,10 +18,10 @@ const watchlistSchema = new Schema(
     isWatched: { type: Boolean, default: false },
     userRating: { type: Number, min: 0, max: 10, default: null },
     watchedAt: { type: Date, default: null },
+    notes: { type: String, trim: true },
   },
   { timestamps: true, versionKey: false }
 );
-
 
 const Watchlist = models.Watchlist || model("Watchlist", watchlistSchema);
 export default Watchlist;

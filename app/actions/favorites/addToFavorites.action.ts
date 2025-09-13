@@ -42,10 +42,10 @@ export async function addToFavorites(formData: FormData) {
       return errResponse("This item is already in your favorites");
     }
 
-    const favorite = await Favorites.create({ ...data, userID: user.id });
+    await Favorites.create({ ...data, userID: user.id });
 
-    currentUser.favorites.push(favorite._id);
-    await currentUser.save();
+    // currentUser.favorites.push(favorite._id);
+    // await currentUser.save();
 
     revalidateTag("user-favorites");
 

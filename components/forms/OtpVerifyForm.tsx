@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import FormMotion from "../motion/FormMotion";
 import { Button, InputOtp } from "@heroui/react";
-import SubmitButton from "../ui/SubmitButton";
+import SubmitButton from "../ui/buttons/SubmitButton";
 import { MdRefresh, MdVerified } from "react-icons/md";
 
 const OtpVerifyForm = () => {

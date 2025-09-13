@@ -2,10 +2,10 @@
 
 import { getMovieActors } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
-import CastCard from "../CastCard";
+import CastCard from "../cards/CastCard";
 import { Cast } from "@/types/cast.types";
-import { Button, Link } from "@heroui/react";
-import SwiperHeader from "../SwiperHeader";
+import SwiperHeader from "../utils/SwiperHeader";
+import LoadingData from "@/components/layout/LoadingData";
 
 interface IProps {
     type: "movie" | "tv"
@@ -23,7 +23,7 @@ const MovieActors = ({ type, id, href, cast }: IProps) => {
         refetchInterval: 1000 * 60 * 60,
         refetchIntervalInBackground: true,
     })
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <LoadingData />
     if (isError) return <h3>Error loading actors</h3>
     return <>
         {data && data.cast && data.cast.length > 0 && (

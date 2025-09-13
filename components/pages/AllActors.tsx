@@ -3,10 +3,11 @@
 import { usePageSync } from "@/hooks/usePageSync";
 import { getAllActors } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
-import PaginationUi from "../ui/PaginationUi";
+import PaginationUi from "../ui/utils/PaginationUi";
 import CardMotion from "../motion/CardMotion";
-import ActorsCard from "../ui/ActorsCard";
+import ActorsCard from "../ui/cards/ActorsCard";
 import { Actor } from "@/types/actor.types";
+import LoadingData from "../layout/LoadingData";
 
 const AllActors = () => {
     const { currentPage, setCurrentPage } = usePageSync();
@@ -20,7 +21,7 @@ const AllActors = () => {
         refetchIntervalInBackground: true,
     });
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <LoadingData />;
     if (isError) return <p>Error loading actors</p>;
 
     return (

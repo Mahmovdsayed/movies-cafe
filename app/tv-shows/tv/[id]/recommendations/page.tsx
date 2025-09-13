@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         openGraph: {
             title: `Recommendations for ${data.name}`,
             description: `Recommended TV shows similar to ${data.name}.`,
-            images: [`https://image.tmdb.org/t/p/w500${data.backdrop_path}`],
+            images: [`https://image.tmdb.org/t/p/w500${data.poster_path}`],
         },
         twitter: {
             card: "summary_large_image",
             title: `Recommendations for ${data.name}`,
             description: `Recommended TV shows similar to ${data.name}.`,
-            images: [`https://image.tmdb.org/t/p/w500${data.backdrop_path}`],
+            images: [`https://image.tmdb.org/t/p/w500${data.poster_path}`],
         },
     };
 }

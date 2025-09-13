@@ -3,17 +3,23 @@
 import { useQuery } from "@tanstack/react-query";
 import { NestApi } from "@/helpers/NestAPI";
 
-const fetchIsUser = async (): Promise<boolean> => {
+interface IsUserResponse {
+  success: boolean;
+  id?: string;
+  username?: string;
+}
+
+const fetchIsUser = async (): Promise<IsUserResponse> => {
   try {
-    const { data } = await NestApi.get("/isUser");
-    return data?.success === true;
+    const { data } = await NestApi.get<IsUserResponse>("/isUser");
+    return data;
   } catch (error) {
-    return false;
+    return { success: false };
   }
 };
 
 export const useIsUser = () => {
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery<IsUserResponse>({
     queryKey: ["isUser"],
     queryFn: fetchIsUser,
     staleTime: 0,
@@ -21,9 +27,11 @@ export const useIsUser = () => {
   });
 
   return {
-    isUser: data ?? false,
+    isUser: data?.success ?? false,
     isLoading,
     isError,
+    userID: data?.id ?? null,
+    userName: data?.username ?? null,
     refetch,
   };
 };

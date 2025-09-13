@@ -1,5 +1,6 @@
 'use client'
 
+import LoadingData from "@/components/layout/LoadingData";
 import { actorExternalIds } from "@/lib/tmdbAPI";
 import { Button, Link } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
@@ -19,7 +20,9 @@ const ActorLinks = ({ id }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    if (isLoading || isError) return null;
+    if (isLoading) return <LoadingData />;
+    if (isError) return <h3>Error loading actor links</h3>;
+
 
     return <>
         <div className="flex items-center justify-start gap-2 mb-3">

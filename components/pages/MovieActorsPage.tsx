@@ -1,9 +1,10 @@
 'use client'
 import { getMovieActors } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
-import SwiperHeader from "../ui/SwiperHeader";
-import CastCard from "../ui/CastCard";
+import SwiperHeader from "../ui/utils/SwiperHeader";
+import CastCard from "../ui/cards/CastCard";
 import { Cast } from "@/types/cast.types";
+import LoadingData from "../layout/LoadingData";
 
 interface IProps {
     id: string;
@@ -19,7 +20,7 @@ const MovieActorsPage = ({ id, type, cast }: IProps) => {
         refetchInterval: 1000 * 60 * 60,
         refetchIntervalInBackground: true,
     })
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <LoadingData />
     if (isError) return <h3>Error loading actors</h3>
     return <>
         {data && data.cast && data.cast.length > 0 && (

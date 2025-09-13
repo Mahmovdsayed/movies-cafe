@@ -1,6 +1,6 @@
 'use client'
 import { Season } from "@/types/seasons.types";
-import SwiperHeader from "../SwiperHeader";
+import SwiperHeader from "../utils/SwiperHeader";
 import { getMovieDetails } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -13,6 +13,7 @@ import { cardNotFoundImage } from "@/constant/statics";
 import { Card, Image } from "@heroui/react";
 import { useRef } from "react";
 import { useAppSelector } from "@/redux/hook";
+import LoadingData from "@/components/layout/LoadingData";
 
 interface IProps {
     id: string
@@ -31,7 +32,7 @@ const Seasons = ({ id }: IProps) => {
         refetchInterval: 1000 * 60 * 60,
         refetchIntervalInBackground: true,
     })
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <LoadingData />
     if (isError) return <h3>Error loading movie details</h3>
 
     const handleClick = (season_id: any) => {

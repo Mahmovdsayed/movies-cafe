@@ -1,7 +1,7 @@
 'use client'
 
-import SwiperHeader from "../ui/SwiperHeader";
-import SwiperCard from "../ui/SwiperCard";
+import SwiperHeader from "../ui/utils/SwiperHeader";
+import SwiperCard from "../ui/cards/SwiperCard";
 import { usePaginatedQuery } from "@/hooks/usePaginatedQuery";
 import { getAiringToday } from "@/lib/tmdbAPI";
 import { useSearchParams } from "next/navigation";

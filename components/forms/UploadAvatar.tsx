@@ -3,22 +3,25 @@ import { Profile } from "@/types/profile.types";
 import { Button, Form } from "@heroui/react";
 import { useState } from "react";
 import { FaUpload } from "react-icons/fa";
-import DrawerModel from "../ui/DrawerModel";
-import FormInput from "../ui/FormInput";
+import DrawerModel from "../ui/utils/DrawerModel";
+import FormInput from "../ui/inputs/FormInput";
 import useHandleResponse from "@/hooks/useHandleResponse";
 import { AddToast } from "@/functions/AddToast";
 import useFormHandler from "@/hooks/useFormHandler";
 import { imageUploadInitialState } from "@/helpers/initialState";
 import { uploadImageValidationSchema } from "@/validations/image/imageValidation";
 import { updateAvatarAction } from "@/app/actions/user/updateAvatar.action";
-import NestErrors from "../ui/NestErrors";
+import NestErrors from "../ui/inputs/NestErrors";
 import { compressImage } from "@/helpers/compresImage";
-import SubmitButton from "../ui/SubmitButton";
+import SubmitButton from "../ui/buttons/SubmitButton";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
-    avatar: Profile["avatar"] | any
+    avatar: Profile["avatar"] | any;
+    profile: Profile | null;
 }
-const UploadAvatar = ({ avatar }: IProps) => {
+const UploadAvatar = ({ avatar, profile }: IProps) => {
+    const QueryClient = useQueryClient();
     const [open, setopen] = useState(false)
     const handleResponse = useHandleResponse();
 
@@ -43,6 +46,7 @@ const UploadAvatar = ({ avatar }: IProps) => {
             formData.append("avatar", values.avatar);
         }
         await handleResponse(updateAvatarAction(formData), formik.resetForm)
+        QueryClient.invalidateQueries({ queryKey: ["profile", profile?.userName, "user-info"] });
     });
 
     return <>

@@ -4,13 +4,14 @@ import { getMovieRecommendations } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
 import GridLayout from "../layout/GridLayout";
 import CardMotion from "../motion/CardMotion";
-import MoviesCard from "../ui/MoviesCard";
+import MoviesCard from "../ui/cards/MoviesCard";
 import { MovieType } from "@/types/movie.type";
-import PaginationUi from "../ui/PaginationUi";
+import PaginationUi from "../ui/utils/PaginationUi";
 import { usePageSync } from "@/hooks/usePageSync";
-import SwiperHeader from "../ui/SwiperHeader";
-import TvCard from "../ui/TvCard";
+import SwiperHeader from "../ui/utils/SwiperHeader";
+import TvCard from "../ui/cards/TvCard";
 import { TvShowsTypes } from "@/types/tv.types";
+import LoadingData from "../layout/LoadingData";
 
 interface IProps {
     id: string
@@ -26,10 +27,10 @@ const MovieRecommendationsPage = ({ id, type }: IProps) => {
         staleTime: 1000 * 60 * 60,
         refetchInterval: 1000 * 60 * 60,
         refetchIntervalInBackground: true,
-        
+
     })
 
-    isLoading && <h3>Loading recommendations...</h3>
+    isLoading && <LoadingData />
     isError && <h3>Error loading recommendations</h3>
     return <>
         <div className="my-6">

@@ -7,9 +7,9 @@ import useHandleResponse from "@/hooks/useHandleResponse";
 import { resetPasswordValidationSchema } from "@/validations/auth/ForgotPasswordValidation";
 import { useSearchParams } from "next/navigation";
 import FormMotion from "../motion/FormMotion";
-import FormInputPassword from "../ui/FormInputPassword";
-import NestErrors from "../ui/NestErrors";
-import SubmitButton from "../ui/SubmitButton";
+import FormInputPassword from "../ui/inputs/FormInputPassword";
+import NestErrors from "../ui/inputs/NestErrors";
+import SubmitButton from "../ui/buttons/SubmitButton";
 import { MdLockReset } from "react-icons/md";
 
 const ResetPasswordForm = () => {

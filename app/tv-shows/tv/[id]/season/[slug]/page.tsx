@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         openGraph: {
             title: `Season ${data.last_episode_to_air.season_number} for ` + data.name,
             description: data.overview,
-            images: [`https://image.tmdb.org/t/p/w500${data.backdrop_path}`],
+            images: [`https://image.tmdb.org/t/p/w500${data.poster_path}`],
         },
         twitter: {
             card: "summary_large_image",
             title: `Season ${data.last_episode_to_air.season_number} for ` + data.name,
             description: data.overview,
-            images: [`https://image.tmdb.org/t/p/w500${data.backdrop_path}`],
+            images: [`https://image.tmdb.org/t/p/w500${data.poster_path}`],
         },
     }
 }

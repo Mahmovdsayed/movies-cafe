@@ -11,7 +11,10 @@ const userToken = async (): Promise<string | null> => {
 const fetchUserData = async (token: string, url: string) => {
   try {
     const { data } = await NestApi.get(url, {
-      headers: { Cookie: `userToken=${token}` },
+      headers: {
+        Cookie: `userToken=${token}`,
+        "x-api-key": process.env.API_KEY,
+      },
     });
     return data.data;
   } catch (error) {
@@ -38,6 +41,7 @@ const generateAiResponse = async (url: string, body: any) => {
       headers: {
         "Content-Type": "application/json",
         Cookie: `userToken=${token}`,
+        "x-api-key": process.env.API_KEY,
       },
     });
     return data;
@@ -46,4 +50,17 @@ const generateAiResponse = async (url: string, body: any) => {
   }
 };
 
-export { getUserData, generateAiResponse };
+const getUserInfo = async (url: string) => {
+  try {
+    const { data } = await NestApi.get(url, {
+      headers: {
+        "x-api-key": process.env.API_KEY,
+      },
+    });
+    return data.data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export { getUserData, generateAiResponse, getUserInfo };

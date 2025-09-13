@@ -7,6 +7,7 @@ import {
   updateImageInCloudinary,
 } from "@/helpers/helpers";
 import { connectToDatabase } from "@/lib/connectToDatabase";
+import User from "@/models/User.model";
 import { uploadImageValidationSchema } from "@/validations/image/imageValidation";
 import { revalidateTag } from "next/cache";
 
@@ -18,6 +19,11 @@ export async function updateAvatarAction(formData: FormData) {
     ]);
 
     if (!user || "error" in user) return user;
+    const userInfo = await User.findById(user.id);
+    if (!userInfo) return errResponse("User not found");
+
+    if (userInfo._id.toString() !== user.id.toString())
+      return errResponse("You are not authorized to update this user");
 
     const avatar = formData.get("avatar") as File | null;
     if (!avatar) return errResponse("No image file provided");
@@ -45,7 +51,6 @@ export async function updateAvatarAction(formData: FormData) {
     revalidateTag(`user-info`);
     return await successResponse("Avatar updated successfully");
   } catch (error) {
-    // console.log(error)
     return await errResponse("Failed to update avatar");
   }
 }

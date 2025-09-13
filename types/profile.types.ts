@@ -13,6 +13,13 @@ type Profile = {
   createdAt: Date;
   updatedAt: Date;
   birthday: string;
+  links: {
+    facebook: string;
+    twitter: string;
+    instagram: string;
+    snapchat: string;
+    tiktok: string;
+  };
 };
 
 export type { Profile };

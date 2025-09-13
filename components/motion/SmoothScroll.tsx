@@ -1,45 +1,43 @@
-"use client";
+'use client';
+import React, { useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
-interface IProps {
-    children: React.ReactNode;
-}
+export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+    const lenisRef = useRef<Lenis | null>(null);
 
-const SmoothScroll = ({ children }: IProps) => {
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-        ScrollSmoother.get()?.kill();
-
-        const smoother = ScrollSmoother.create({
-            wrapper: "#smooth-wrapper",
-            content: "#smooth-content",
-            smooth: 1, // desktop smooth
-            effects: true,
-            normalizeScroll: true,
-            ignoreMobileResize: true,
-            smoothTouch: 0.8, // smoother on touch devices
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t: number) => 1 - Math.pow(1 - t, 3),
+            smoothWheel: true,
+            // syncTouch: true,
         });
 
+        lenisRef.current = lenis;
+
+        lenis.on("scroll", ScrollTrigger.update);
+
+        const updateLenis = () => {
+            lenis.raf(performance.now());
+        };
+
+        gsap.ticker.add(updateLenis);
+        gsap.ticker.fps(-1);
+
         return () => {
-            smoother.kill();
+            lenis.destroy();
+            gsap.ticker.remove(updateLenis);
         };
     }, []);
 
+
     return (
-        <div
-            id="smooth-wrapper"
-            className="relative w-full min-h-screen overflow-hidden"
-        >
-            <div id="smooth-content" className="w-full min-h-screen">
-                {children}
-            </div>
+        <div data-lenis-container>
+            {children}
         </div>
     );
-};
-
-export default SmoothScroll;
+}

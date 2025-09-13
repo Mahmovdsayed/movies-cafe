@@ -70,7 +70,7 @@ const MoviesFilters = () => {
                 <FiFilter />
             </Button>
 
-            <Drawer backdrop={"blur"} size={"sm"} isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Drawer className="bg-white dark:bg-black/20 backdrop-blur-2xl" backdrop={"blur"} size={"sm"} isOpen={isOpen} onOpenChange={onOpenChange}>
                 <DrawerContent>
                     {() => (
                         <>
@@ -159,8 +159,8 @@ const MoviesFilters = () => {
                             </DrawerBody>
                             <Divider />
                             <DrawerFooter className="flex-col gap-2">
-                                <Button startContent={<FaFilter />} color="default" className="text-white bg-black dark:bg-white dark:text-black" onPress={handleApplyFilters}>Apply Filters</Button>
-                                <Button startContent={<RiResetLeftFill />} color="danger" variant="flat" onPress={handleClearFilters}>Clear Filters</Button>
+                                <Button startContent={<FaFilter />} color="default" className="text-white bg-black" onPress={handleApplyFilters}>Apply Filters</Button>
+                                <Button startContent={<RiResetLeftFill />} className="bg-black/20 backdrop-blur-md" variant="flat" onPress={handleClearFilters}>Clear Filters</Button>
                             </DrawerFooter>
                         </>
                     )}

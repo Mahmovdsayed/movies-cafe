@@ -7,10 +7,10 @@ import useHandleResponse from "@/hooks/useHandleResponse";
 import { signUpValidationSchema } from "@/validations/auth/SignUpValidation";
 import { Link } from "@heroui/react";
 import FormMotion from "../motion/FormMotion";
-import FormInput from "../ui/FormInput";
-import NestErrors from "../ui/NestErrors";
-import FormInputPassword from "../ui/FormInputPassword";
-import SubmitButton from "../ui/SubmitButton";
+import FormInput from "../ui/inputs/FormInput";
+import NestErrors from "../ui/inputs/NestErrors";
+import FormInputPassword from "../ui/inputs/FormInputPassword";
+import SubmitButton from "../ui/buttons/SubmitButton";
 import { IoLogIn } from "react-icons/io5";
 
 const SignUpForm = () => {

@@ -8,6 +8,7 @@ const likeSchema = new Schema(
   { timestamps: true, versionKey: false }
 );
 
+likeSchema.index({ userID: 1, postID: 1 }, { unique: true });
 
 const Likes = models.Likes || model("Likes", likeSchema);
 export default Likes;

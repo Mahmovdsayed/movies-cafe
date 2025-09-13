@@ -4,7 +4,14 @@ import ImageSchema from "./image.model";
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
-    userName: { type: String, required: true, unique: true },
+    userName: {
+      type: String,
+      required: true,
+      unique: true,
+      index: true,
+      trim: true,
+      lowercase: true,
+    },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     avatar: ImageSchema,
@@ -19,22 +26,15 @@ const userSchema = new Schema(
     isVerified: { type: Boolean, default: false },
     aiCounter: { type: Number, default: 0, max: 3, min: 0 },
     lastAICounterReset: { type: Date, default: new Date() },
-    favorites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Favorites",
-        index: true,
-      },
-    ],
-
-    watchlist: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Watchlist",
-        trim: true,
-        index: true,
-      },
-    ],
+    links: {
+      facebook: { type: String, trim: true },
+      twitter: { type: String, trim: true },
+      instagram: { type: String, trim: true },
+      snapchat: { type: String, trim: true },
+      tiktok: { type: String, trim: true },
+    },
+    // favorites: [{ type: Schema.Types.ObjectId, ref: "Favorites", index: true }],
+    // watchlist: [{ type: Schema.Types.ObjectId, ref: "Watchlist", index: true }],
   },
   { timestamps: true, versionKey: false }
 );

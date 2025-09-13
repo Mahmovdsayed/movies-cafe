@@ -10,20 +10,20 @@ import { usePathname } from "next/navigation";
 import { useIsUser } from "@/hooks/isUser";
 
 const NavBar = ({ user }: { user: Profile }) => {
-    const { isUser } = useIsUser()
+    const { isUser, userName } = useIsUser()
     const pathname = usePathname()
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const menuItems: { label: string; href: string }[] = [
         { label: "Home", href: "/" },
         isUser ? { label: "Discover", href: "/discover" } : { label: "Sign In", href: "/auth/signin" },
-        isUser ? { label: "Profile", href: "/profile" } : { label: "Sign Up", href: "/auth/signup" },
+        isUser ? { label: "Profile", href: `/user/${userName}` } : { label: "Sign Up", href: "/auth/signup" },
         { label: "Movies", href: "/movies" },
         { label: "All Tv Shows", href: "/tv-shows" },
         { label: "Actors", href: "/actors" },
         { label: "Search", href: "/search/movies" },
         { label: "Settings", href: "/settings" },
-        ...(isUser ? [{ label: "Logout", href: "/" }] : []), 
+        ...(isUser ? [{ label: "Logout", href: "/" }] : []),
     ];
 
 
@@ -78,10 +78,10 @@ const NavBar = ({ user }: { user: Profile }) => {
                     :
                     <NavbarContent justify="end">
                         <NavbarItem className="hidden md:flex">
-                            <Link size="sm" href="#">Login</Link>
+                            <Link as={Link} size="sm" href="/auth/signin">Login</Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Button size="sm" radius="sm" as={Link} color="primary" href="#" variant="flat">
+                            <Button size="sm" radius="sm" as={Link} color="primary" href="/auth/signup" variant="flat">
                                 Sign Up
                             </Button>
                         </NavbarItem>

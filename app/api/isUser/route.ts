@@ -9,7 +9,11 @@ export async function GET(request: Request) {
       authenticateUser(),
     ]);
     if (!user) return NextResponse.json({ success: false });
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      id: user.id,
+      username: user.userName,
+    });
   } catch (error) {
     return NextResponse.json({ success: false });
   }

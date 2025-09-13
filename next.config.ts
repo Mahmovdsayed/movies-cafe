@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
   },
   output: "standalone",
   experimental: {
-    // cpus: 8,
     scrollRestoration: true,
     optimizeCss: true,
     optimizeServerReact: true,
@@ -30,14 +29,8 @@ const nextConfig: NextConfig = {
     serverSourceMaps: false,
     webpackMemoryOptimizations: true,
     viewTransition: true,
-    // turbopackMinify: true,
-    // turbopackSourceMaps: false,
-    // turbopackTreeShaking: true,
     serverActions: {
-      allowedOrigins: [
-        "https://moviescafe.vercel.app",
-        "http://localhost:3000",
-      ],
+      allowedOrigins: ["https://moviescafe.vercel.app"],
       bodySizeLimit: "10mb",
     },
   },

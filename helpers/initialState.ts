@@ -28,7 +28,5 @@ export const RepostInitialState = {
 };
 
 export const PostInitialState = {
-  title: "",
-  description: "",
-  type: "",
+  content: "",
 };

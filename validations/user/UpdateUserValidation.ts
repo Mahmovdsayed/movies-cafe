@@ -22,6 +22,55 @@ const updateUserValidationSchema = yup.object().shape({
     .oneOf(["male", "female"], "Gender must be one of: male, female")
     .required("Gender is required"),
   birthday: yup.date().required("Birthday is required"),
+  links: yup
+    .object()
+    .shape({
+      facebook: yup
+        .string()
+        .url("Invalid URL")
+        .matches(
+          /^https?:\/\/(www\.)?facebook\.com\/.+$/,
+          "Must be a valid Facebook URL"
+        )
+        .optional(),
+
+      twitter: yup
+        .string()
+        .url("Invalid URL")
+        .matches(
+          /^https?:\/\/(www\.)?(twitter|x)\.com\/.+$/,
+          "Must be a valid Twitter/X URL"
+        )
+        .optional(),
+
+      instagram: yup
+        .string()
+        .url("Invalid URL")
+        .matches(
+          /^https?:\/\/(www\.)?instagram\.com\/.+$/,
+          "Must be a valid Instagram URL"
+        )
+        .optional(),
+
+      snapchat: yup
+        .string()
+        .url("Invalid URL")
+        .matches(
+          /^https?:\/\/(www\.)?snapchat\.com\/.+$/,
+          "Must be a valid Snapchat URL"
+        )
+        .optional(),
+
+      tiktok: yup
+        .string()
+        .url("Invalid URL")
+        .matches(
+          /^https?:\/\/(www\.)?tiktok\.com\/.+$/,
+          "Must be a valid TikTok URL"
+        )
+        .optional(),
+    })
+    .optional(),
 });
 
 export default updateUserValidationSchema;

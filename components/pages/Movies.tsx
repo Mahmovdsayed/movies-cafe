@@ -2,13 +2,14 @@
 
 import { MovieType } from "@/types/movie.type";
 import GridLayout from "../layout/GridLayout";
-import MoviesCard from "../ui/MoviesCard";
+import MoviesCard from "../ui/cards/MoviesCard";
 import { useMovies } from "@/hooks/useMovies";
 import { usePageSync } from "@/hooks/usePageSync";
-import PaginationUi from "../ui/PaginationUi";
+import PaginationUi from "../ui/utils/PaginationUi";
 import CardMotion from "../motion/CardMotion";
-import TvCard from "../ui/TvCard";
+import TvCard from "../ui/cards/TvCard";
 import { TvShowsTypes } from "@/types/tv.types";
+import LoadingData from "../layout/LoadingData";
 
 const Movies = ({ type = "movie" }: { type?: "movie" | "tv" }) => {
     const { currentPage, setCurrentPage } = usePageSync();
@@ -17,7 +18,7 @@ const Movies = ({ type = "movie" }: { type?: "movie" | "tv" }) => {
         page: currentPage,
         type
     });
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <LoadingData />;
     if (isError) return <p>Error loading movies</p>;
 
     return <>

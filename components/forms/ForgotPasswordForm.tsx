@@ -6,9 +6,9 @@ import useFormHandler from "@/hooks/useFormHandler";
 import useHandleResponse from "@/hooks/useHandleResponse";
 import { forgotPasswordValidationSchema } from "@/validations/auth/ForgotPasswordValidation";
 import FormMotion from "../motion/FormMotion";
-import FormInput from "../ui/FormInput";
-import NestErrors from "../ui/NestErrors";
-import SubmitButton from "../ui/SubmitButton";
+import FormInput from "../ui/inputs/FormInput";
+import NestErrors from "../ui/inputs/NestErrors";
+import SubmitButton from "../ui/buttons/SubmitButton";
 import { IoIosSend } from "react-icons/io";
 
 const ForgotPasswordForm = () => {

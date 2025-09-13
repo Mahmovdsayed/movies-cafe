@@ -4,13 +4,14 @@ import { usePageSync } from "@/hooks/usePageSync";
 import { SearchData } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import PaginationUi from "../ui/PaginationUi";
+import PaginationUi from "../ui/utils/PaginationUi";
 import { useState, useEffect } from "react";
-import MoviesCard from "../ui/MoviesCard";
+import MoviesCard from "../ui/cards/MoviesCard";
 import GridLayout from "../layout/GridLayout";
-import TvCard from "../ui/TvCard";
+import TvCard from "../ui/cards/TvCard";
 import CardMotion from "../motion/CardMotion";
-import ActorsCard from "../ui/ActorsCard";
+import ActorsCard from "../ui/cards/ActorsCard";
+import LoadingData from "../layout/LoadingData";
 
 interface IProps {
     type: "person" | "company" | "keyword" | "tv" | "movie";
@@ -42,7 +43,7 @@ const Search = ({ type, queryKey }: IProps) => {
         enabled: !!debouncedQuery,
     });
 
-    if (isLoading) return <h3>Loading data...</h3>;
+    if (isLoading) return <LoadingData />;
     if (isError) return <h3>Error loading data</h3>;
 
     return (

@@ -5,8 +5,9 @@ import { usePaginatedQuery } from "@/hooks/usePaginatedQuery";
 import { TvShowsTypes } from "@/types/tv.types";
 import GridLayout from "./GridLayout";
 import CardMotion from "../motion/CardMotion";
-import PaginationUi from "../ui/PaginationUi";
-import TvCard from "../ui/TvCard";
+import PaginationUi from "../ui/utils/PaginationUi";
+import TvCard from "../ui/cards/TvCard";
+import LoadingData from "./LoadingData";
 
 interface IProps {
     queryFn: (page: number) => Promise<{ results: TvShowsTypes[]; total_pages: number }>;
@@ -22,7 +23,7 @@ const TvsLayout = ({ queryFn, queryKey, isPages = true }: IProps) => {
         page: currentPage,
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingData />;
     if (isError) return <div>Error fetching data.</div>;
 
     return <>

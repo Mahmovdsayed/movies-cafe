@@ -9,7 +9,12 @@ import {
   successResponse,
 } from "@/helpers/helpers";
 import { connectToDatabase } from "@/lib/connectToDatabase";
+import AiContent from "@/models/aiContent.model";
+import Favorites from "@/models/favorites.model";
+import Likes from "@/models/likes.model";
+import Post from "@/models/posts.model";
 import User from "@/models/User.model";
+import Watchlist from "@/models/watchlist.model";
 import { isValidObjectId } from "mongoose";
 import { cookies } from "next/headers";
 
@@ -30,6 +35,15 @@ export async function deleteUserAction(id: string) {
     if (user.id.toString() !== id) {
       return errResponse("Unauthorized: You can only delete your own account");
     }
+
+    await Promise.all([
+      Post.deleteMany({ userID: id }),
+      Favorites.deleteMany({ userID: id }),
+      Watchlist.deleteMany({ userID: id }),
+      Likes.deleteMany({ userID: id }),
+      AiContent.deleteMany({ userID: id }),
+    ]);
+
 
     if (user?.avatar?.public_id) {
       await deleteImageFromCloudinary(user.avatar.public_id);

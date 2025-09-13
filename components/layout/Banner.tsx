@@ -10,7 +10,6 @@ interface IProps {
 const Banner = ({ title, description, isCentered = false }: IProps) => {
     return <>
         {
-
             <div className={`${isCentered ? "text-center" : "text-start"} overflow-hidden container mx-auto`}>
                 <motion.h1
                     initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}

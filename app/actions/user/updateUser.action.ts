@@ -14,12 +14,24 @@ export async function updateUserAction(formData: FormData) {
     ]);
     if (!user || "error" in user) return user;
 
+    const userInfo = await User.findById(user.id);
+    if (!userInfo) return errResponse("User not found");
+
+    if (userInfo._id.toString() !== user.id.toString())
+      return errResponse("You are not authorized to update this user");
     const data = {
       name: formData.get("name") as string,
       about: formData.get("about") as string,
       country: formData.get("country") as string,
       gender: formData.get("gender") as string,
       birthday: formData.get("birthday") as string,
+      links: {
+        facebook: formData.get("links.facebook") as string,
+        twitter: formData.get("links.twitter") as string,
+        instagram: formData.get("links.instagram") as string,
+        snapchat: formData.get("links.snapchat") as string,
+        tiktok: formData.get("links.tiktok") as string,
+      },
     };
 
     try {

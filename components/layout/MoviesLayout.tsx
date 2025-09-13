@@ -1,12 +1,13 @@
 'use client'
 
 import GridLayout from "../layout/GridLayout";
-import MoviesCard from "../ui/MoviesCard";
+import MoviesCard from "../ui/cards/MoviesCard";
 import { MovieType } from "@/types/movie.type";
 import { usePageSync } from "@/hooks/usePageSync";
 import { usePaginatedQuery } from "@/hooks/usePaginatedQuery";
-import PaginationUi from "../ui/PaginationUi";
+import PaginationUi from "../ui/utils/PaginationUi";
 import CardMotion from "../motion/CardMotion";
+import LoadingData from "./LoadingData";
 
 interface IProps {
     queryFn: (page: number) => Promise<{ results: MovieType[]; total_pages: number }>;
@@ -23,7 +24,7 @@ const MoviesLayout = ({ queryFn, queryKey, isPages = true }: IProps) => {
         page: currentPage,
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingData />;
     if (isError) return <div>Error fetching data.</div>;
 
     return (

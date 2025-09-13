@@ -1,5 +1,6 @@
 "use server";
 import { tmdbApi } from "@/helpers/api";
+import { NestApi } from "@/helpers/NestAPI";
 
 export const getMovieDetails = async (type: string, movie_id: string) => {
   const { data } = await tmdbApi.get(`/${type}/${movie_id}?language=en-US`);
@@ -223,7 +224,9 @@ export const SearchData = async (
   type: "person" | "company" | "keyword" | "tv" | "movie" = "movie"
 ) => {
   const { data } = await tmdbApi.get(
-    `/search/${type}?query=${encodeURIComponent(query)}&page=${page}`
+    `/search/${type}?query=${encodeURIComponent(
+      query
+    )}&page=${page}&include_adult=false`
   );
   return data;
 };
@@ -256,4 +259,17 @@ export const seasonDetails = async (seriesID: string, seasonID: string) => {
     `/tv/${seriesID}/season/${seasonID}?language=en-US`
   );
   return data;
+};
+
+export const userInfoAPI = async (url: string) => {
+  try {
+    const { data } = await NestApi.get(url, {
+      headers: {
+        "x-api-key": process.env.API_KEY,
+      },
+    });
+    return data;
+  } catch (error) {
+    return null;
+  }
 };

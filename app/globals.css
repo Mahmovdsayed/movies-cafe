@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
+
 body {
   font-family: "Inter", sans-serif;
 }
@@ -12,4 +13,13 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-dark {
+    scrollbar-color: #262626 transparent;
+  }
 }

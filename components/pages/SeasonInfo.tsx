@@ -4,12 +4,12 @@ import { seasonDetails } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { formatVoteAverage } from "@/functions/formatVoteAverage";
 import CardMotion from "../motion/CardMotion";
 import { Card, CardBody, CardHeader, Image } from "@heroui/react";
 import { useAppSelector } from "@/redux/hook";
 import { cardNotFoundImage } from "@/constant/statics";
 import { TMDB_CONFIG } from "@/constant/config";
+import LoadingData from "../layout/LoadingData";
 
 interface IProps {
     seasonID: string;
@@ -31,6 +31,8 @@ const SeasonInfo = ({ seasonID }: IProps) => {
         refetchInterval: 1000 * 60 * 60,
         refetchIntervalInBackground: true,
     })
+    if (isLoading) return <LoadingData />
+    if (isError) return <h3>Error loading season details</h3>
 
     return (
         <div className="my-8 w-full†">

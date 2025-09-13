@@ -5,7 +5,7 @@ import { BsCalendar2DateFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { IoIosStar, IoIosTimer } from "react-icons/io";
 import { MdOutlineLanguage } from "react-icons/md";
-import AddTo from "../AddTo";
+import AddTo from "../addTo/AddTo";
 import { cardNotFoundImage } from "@/constant/statics";
 import { useAppSelector } from "@/redux/hook";
 

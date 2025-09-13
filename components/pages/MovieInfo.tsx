@@ -3,6 +3,7 @@
 import { getMovieDetails } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
 import MovieHeader from "../ui/Movies&Tv/MovieHeader";
+import LoadingData from "../layout/LoadingData";
 
 interface IProps {
     type: "movie" | "tv";
@@ -19,7 +20,7 @@ const MovieInfo = ({ id, type }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <LoadingData />
     if (isError) return <h3>Error loading movie details</h3>
 
     return <>

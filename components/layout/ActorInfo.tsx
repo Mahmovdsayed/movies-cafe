@@ -9,6 +9,7 @@ import { BsCalendar2DateFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { MdOutlineLanguage } from "react-icons/md";
 import ActorLinks from "../ui/Actor/ActorLinks";
+import LoadingData from "./LoadingData";
 
 interface IProps {
     id: string
@@ -26,7 +27,7 @@ const ActorInfo = ({ id }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    if (isLoading) return <h3>Loading...</h3>
+    if (isLoading) return <LoadingData />
     if (isError) return <h3>Error loading movie details</h3>
 
 

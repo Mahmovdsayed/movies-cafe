@@ -2,8 +2,9 @@
 
 import { actorCredits } from "@/lib/tmdbAPI";
 import { useQuery } from "@tanstack/react-query";
-import SwiperHeader from "../SwiperHeader";
-import SwiperCard from "../SwiperCard";
+import SwiperHeader from "../utils/SwiperHeader";
+import SwiperCard from "../cards/SwiperCard";
+import LoadingData from "@/components/layout/LoadingData";
 
 interface IProps {
     type: "movie_credits" | "tv_credits"
@@ -19,7 +20,7 @@ const Credits = ({ type, id }: IProps) => {
         refetchIntervalInBackground: true,
     })
 
-    isLoading && <h3>Loading recommendations...</h3>
+    isLoading && <h3><LoadingData /></h3>
     isError && <h3>Error loading recommendations</h3>
 
     return <>

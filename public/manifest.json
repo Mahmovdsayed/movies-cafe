@@ -1,0 +1,26 @@
+{
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "dir": "left",
+  "lang": "en-US",
+  "name": "Movies Cafe",
+  "short_name": "Movies Cafe",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Discover Movies Cafe, your ultimate hub for movies and TV shows. Explore detailed information about films and series, interact with AI in English or Arabic, and enjoy social features like reposting, commenting, liking, and sharing. Create your account to save favorites, add to watch later, and personalize your experience with custom themes. Stay connected with seamless search, profile customization, and effortless sharing with friends."
+}

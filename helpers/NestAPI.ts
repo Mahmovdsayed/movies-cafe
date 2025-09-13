@@ -11,5 +11,6 @@ export const NestApi = axios.create({
     "Access-Control-Allow-Credentials": "true",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "x-api-key": process.env.API_KEY,
   },
 });

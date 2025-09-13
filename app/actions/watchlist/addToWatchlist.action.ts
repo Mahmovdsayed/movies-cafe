@@ -25,7 +25,7 @@ export async function addToWatchlistAction(formData: FormData) {
       type: String(formData.get("type")),
       movieOverview: String(formData.get("movieOverview")),
     };
-    
+
     try {
       await userFavoritesSchema.validate(data, { abortEarly: true });
     } catch (error: any) {
@@ -42,9 +42,9 @@ export async function addToWatchlistAction(formData: FormData) {
       return errResponse("This item is already in your watchlist");
     }
 
-    const watchlist = await Watchlist.create({ ...data, userID: user.id });
-    currentUser.watchlist.push(watchlist._id);
-    await currentUser.save();
+    await Watchlist.create({ ...data, userID: user.id });
+    // currentUser.watchlist.push(watchlist._id);
+    // await currentUser.save();
 
     revalidateTag("user-watchlist");
     return successResponse("Added! You can find it in your watch list.");

@@ -1,10 +1,24 @@
+import { authenticateUser } from "@/helpers/helpers";
 import { connectToDatabase } from "@/lib/connectToDatabase";
 import Post from "@/models/posts.model";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    await connectToDatabase();
+    const apiKey = req.headers.get("x-api-key");
+    if (!apiKey || apiKey !== process.env.API_KEY) {
+      return NextResponse.json({
+        success: false,
+        message: "Forbidden: Invalid API key",
+      });
+    }
+    const [_, user] = await Promise.all([
+      connectToDatabase(),
+      authenticateUser(),
+    ]);
+
+    if (!user)
+      return NextResponse.json({ success: false, message: "Unauthorized" });
 
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
@@ -12,12 +26,13 @@ export async function GET(req: Request) {
     const skip = (page - 1) * limit;
 
     const [totalItems, reposts] = await Promise.all([
-      Post.countDocuments({ type: "repost" }),
-      Post.find({ type: "repost" })
+      Post.countDocuments({}),
+      Post.find({})
         .populate({
           path: "userID",
-          select: "_id userName isVerified name",
+          select: "_id userName isVerified name avatar",
         })
+        .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .lean(),

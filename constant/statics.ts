@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000";
+const baseURL = "https://moviescafe.vercel.app";
 const TMDB_API_URL = "https://api.themoviedb.org/3";
 const cardNotFoundImage =
   "https://res.cloudinary.com/dxvpvtcbg/image/upload/v1755126920/IMAGE_NOT_FOUND_zlpppn.png";
@@ -22,7 +22,6 @@ const chipsTvShows = [
   { title: "Top Rated", url: "/tv-shows/top-rated" },
 ];
 
-const chipsProfile = [{ title: "My Profile", url: "/profile" }];
 const allowedImageTypes = [
   "image/png",
   "image/jpeg",
@@ -39,5 +38,4 @@ export {
   cardNotFoundImage,
   NotFoundUserImage,
   chipsTvShows,
-  chipsProfile,
 };

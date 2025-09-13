@@ -19,6 +19,16 @@ export async function deleteFromFavorites(ID: string) {
     if (!currentUser)
       return errResponse("You must be logged in to remove from favorites");
 
+    const favoriteItem = await Favorites.findById(ID);
+
+    if (!favoriteItem) {
+      return errResponse("Favorite item not found");
+    }
+
+    if (favoriteItem.userID.toString() !== user.id.toString()) {
+      return errResponse("You are not authorized to delete this item");
+    }
+
     const deleted = await Favorites.findOneAndDelete({
       userID: user.id,
       _id: ID,
