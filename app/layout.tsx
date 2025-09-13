@@ -58,10 +58,10 @@ export const metadata: Metadata = {
     creator: "@MahmoudSayed",
     images: ["https://res.cloudinary.com/dtpsyi5am/image/upload/v1757732968/moviescafebanner_aewklg.png"],
   },
-  icons: {
-    shortcut: "/icon512_maskable.png",
-    apple: "/icon512_maskable.png",
-  },
+  // icons: {
+  //   shortcut: "/icon512_maskable.png",
+  //   apple: "/icon512_maskable.png",
+  // },
   // manifest: "/manifest.json",
   robots: {
     index: true,
