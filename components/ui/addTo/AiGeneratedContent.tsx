@@ -77,33 +77,32 @@ const AiGeneratedContent = ({ movie, appearance }: IProps) => {
         if (!loading && content && textRef.current) {
             textRef.current.innerHTML = "";
             const isArabic = aiLang === "ar";
-            const chars = content.split("");
-            chars.forEach((char, i) => {
+
+            const parts = isArabic ? content.split(" ") : content.split("");
+
+            parts.forEach((part, i) => {
                 const span = document.createElement("span");
-                span.textContent = char;
+                span.textContent = isArabic ? part + " " : part;
                 span.style.opacity = "0";
                 textRef.current!.appendChild(span);
 
                 gsap.to(span, {
                     opacity: 1,
-                    // color: window.matchMedia("(prefers-color-scheme: dark)").matches
-                    //     ? "#ffffff"
-                    //     : "#000000",
-                    delay: i * 0.02,
+                    delay: i * 0.05,
                     duration: 0.2,
                 });
-
             });
+
             if (isArabic) {
-                textRef.current.style.direction = "rtl";
+                textRef.current.setAttribute("dir", "rtl");
                 textRef.current.style.textAlign = "right";
             } else {
-                textRef.current.style.direction = "ltr";
+                textRef.current.setAttribute("dir", "ltr");
                 textRef.current.style.textAlign = "left";
             }
         }
-
     }, [loading, content]);
+
 
     return (
         <>
