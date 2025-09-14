@@ -35,7 +35,7 @@ const MovieHeader = ({ type, id, banner, title, description, poster, genres, run
         <div className="relative w-full">
             <div
                 className={`absolute inset-0 bg-cover bg-center object-cover object-center z-0 ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
-                style={{ backgroundImage: `url(${banner === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/w200${banner}`})` }}
+                style={{ backgroundImage: `url(${banner === null ? cardNotFoundImage : `https://image.tmdb.org/t/p/w200${banner}`})` }}
             />
             <div className="absolute inset-0 bg-black/70 backdrop-blur-2xl" />
 
@@ -43,7 +43,7 @@ const MovieHeader = ({ type, id, banner, title, description, poster, genres, run
                 <div className="relative z-10 flex flex-col lg:flex-row lg:items-center items-start justify-start  py-12 gap-6 lg:gap-12">
                     <div className="">
                         <Image
-                            src={poster === null ? cardNotFoundImage : `http://image.tmdb.org/t/p/${imageSize}${poster}`}
+                            src={poster === null ? cardNotFoundImage : `https://image.tmdb.org/t/p/${imageSize}${poster}`}
                             alt={title}
                             className={`w-40 h-60 md:48 md:h-72 lg:w-64 lg:h-96 object-cover rounded-lg z-10 shadow-xl ${appearance === "blackWhite" ? "filter grayscale hover:grayscale-0 transition" : ""}`}
                             radius="lg"

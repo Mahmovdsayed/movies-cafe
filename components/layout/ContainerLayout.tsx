@@ -53,7 +53,7 @@ const ContainerLayout = ({ children, isDiscover = false, ...rest }: ContainerLay
                 {children}
             </div>
 
-            <BlurWrapper />
+            {/* <BlurWrapper /> */}
         </main>
     );
 };
