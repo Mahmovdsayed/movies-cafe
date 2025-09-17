@@ -24,8 +24,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    appDocumentPreloading: true,
-    viewTransition: true,
     serverActions: {
       allowedOrigins: ["https://moviescafe.vercel.app"],
       bodySizeLimit: "10mb",
