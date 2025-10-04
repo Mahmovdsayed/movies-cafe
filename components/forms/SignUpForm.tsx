@@ -23,7 +23,7 @@ const SignUpForm = () => {
         formData.append('email', values.email);
         formData.append('password', values.password);
 
-        await handleResponse(signUpAction(formData), formik.resetForm, `/auth/verify?email=${values.email}`)
+        await handleResponse(signUpAction(formData), formik.resetForm, `/auth/signin`)
     });
 
     return <>

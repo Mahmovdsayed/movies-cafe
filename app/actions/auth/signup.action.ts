@@ -64,13 +64,13 @@ export async function signUpAction(formData: FormData) {
       ...userData,
       password: hashedPassword,
       avatar: { url: imageUrl, public_id: publicId },
-      isVerified: false,
-      otp: generateOTP(),
-      otpExpiry: new Date(Date.now() + 10 * 60 * 1000),
+      isVerified: true,
+      // otp: generateOTP(),
+      // otpExpiry: new Date(Date.now() + 10 * 60 * 1000),
     });
 
     await newUser.save();
-    await sendOTPEmail(newUser.email, newUser.otp);
+    // await sendOTPEmail(newUser.email, newUser.otp);
 
     return await successResponse("User registered successfully.");
   } catch (error) {
