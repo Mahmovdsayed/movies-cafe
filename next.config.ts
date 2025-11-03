@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    turbopackFileSystemCacheForDev: true,
+    // turbopackFileSystemCacheForBuild: true,
     serverActions: {
       allowedOrigins: ["https://moviescafe.vercel.app"],
       bodySizeLimit: "10mb",

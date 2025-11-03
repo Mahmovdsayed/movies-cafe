@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { verifyToken } from "./helpers/verifyToken";
 import { baseURL } from "./constant/statics";
 
-export async function middleware(req: any) {
+export async function proxy(req: any) {
   const token = (await cookies()).get("userToken")?.value;
   const { pathname } = req.nextUrl;
 
