@@ -52,7 +52,7 @@ export async function addCommentAction(
       $push: { comments: createdComment._id },
     });
 
-    revalidateTag("post-discover");
+    revalidateTag("post-discover", "default");
     return successResponse("Comment added successfully!");
   } catch (error) {
     return errResponse("Something went wrong while commenting on the post!");

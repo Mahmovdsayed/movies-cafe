@@ -40,7 +40,7 @@ export async function deleteFromFavorites(ID: string) {
 
     await User.updateOne({ _id: user.id }, { $pull: { favorites: ID } });
 
-    revalidateTag("user-favorites");
+    revalidateTag("user-favorites", "default");
 
     return successResponse("Removed from your favorites!");
   } catch (error) {

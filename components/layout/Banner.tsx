@@ -8,6 +8,9 @@ interface IProps {
     isCentered?: boolean
 }
 const Banner = ({ title, description, isCentered = false }: IProps) => {
+
+
+
     return <>
         {
             <div className={`${isCentered ? "text-center" : "text-start"} overflow-hidden container mx-auto`}>

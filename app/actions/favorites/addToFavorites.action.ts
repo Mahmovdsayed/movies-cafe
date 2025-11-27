@@ -47,7 +47,7 @@ export async function addToFavorites(formData: FormData) {
     // currentUser.favorites.push(favorite._id);
     // await currentUser.save();
 
-    revalidateTag("user-favorites");
+    revalidateTag("user-favorites", "default");
 
     return successResponse("Added! You can find it in your favorites list.");
   } catch (err) {

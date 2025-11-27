@@ -9,28 +9,36 @@ const userToken = async (): Promise<string | null> => {
 };
 
 const fetchUserData = async (token: string, url: string) => {
-  try {
-    const { data } = await NestApi.get(url, {
-      headers: {
-        Cookie: `userToken=${token}`,
-        "x-api-key": process.env.API_KEY,
-      },
-    });
-    return data.data;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
+  const { data } = await NestApi.get(url, {
+    headers: {
+      Cookie: `userToken=${token}`,
+      "x-api-key": process.env.API_KEY,
+    },
+  });
+  return data.data;
 };
 
 const getUserData = async (url: string, tag: string) => {
   const token = await userToken();
   if (!token) return null;
 
-  return unstable_cache(() => fetchUserData(token, url), [tag, token], {
-    tags: [tag],
-    revalidate: 60,
-  })();
+  try {
+    const cachedFetch = unstable_cache(
+      async () => {
+        const data = await fetchUserData(token, url);
+        return data;
+      },
+      [tag, token],
+      {
+        tags: [tag],
+        revalidate: 60,
+      }
+    );
+    return await cachedFetch();
+  } catch (error) {
+    console.error(`Error fetching data for ${url}:`, error);
+    return null;
+  }
 };
 
 const generateAiResponse = async (url: string, body: any) => {

@@ -11,7 +11,8 @@ import { revalidateTag } from "next/cache";
 export async function likePostAction(userID: string, postID: string) {
   try {
     if (!userID || !postID) return errResponse("ID is required");
-    if (!isValidObjectId(userID) || !isValidObjectId(postID)) return errResponse("Invalid ID");
+    if (!isValidObjectId(userID) || !isValidObjectId(postID))
+      return errResponse("Invalid ID");
 
     await connectToDatabase();
 
@@ -34,7 +35,7 @@ export async function likePostAction(userID: string, postID: string) {
         $pull: { likes: userID },
       });
 
-      revalidateTag("discover");
+      revalidateTag("discover", "default");
       return successResponse("Post unliked successfully!");
     } else {
       await Likes.create({ userID, postID });
@@ -42,7 +43,7 @@ export async function likePostAction(userID: string, postID: string) {
         $addToSet: { likes: userID },
       });
 
-      revalidateTag("discover");
+      revalidateTag("discover", "default");
       return successResponse("Post liked successfully!");
     }
   } catch (error) {

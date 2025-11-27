@@ -46,7 +46,7 @@ export async function addToWatchlistAction(formData: FormData) {
     // currentUser.watchlist.push(watchlist._id);
     // await currentUser.save();
 
-    revalidateTag("user-watchlist");
+    revalidateTag("user-watchlist", "default");
     return successResponse("Added! You can find it in your watch list.");
   } catch (error) {
     return errResponse("Failed to add to favorites");

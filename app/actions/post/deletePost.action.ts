@@ -26,8 +26,8 @@ export async function deletePostAction(ID: string) {
 
     await Post.findByIdAndDelete(ID);
 
-    revalidateTag("user-posts");
-    revalidateTag("discover");
+    revalidateTag("user-posts", "default");
+    revalidateTag("discover", "default");
     return successResponse("Post deleted successfully!");
   } catch (error) {
     return errResponse("Failed to delete post.");

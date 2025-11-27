@@ -48,7 +48,7 @@ export async function updateAvatarAction(formData: FormData) {
       public_id: publicId,
     };
     await user.save();
-    revalidateTag(`user-info`);
+    revalidateTag(`user-info`, "default");
     return await successResponse("Avatar updated successfully");
   } catch (error) {
     return await errResponse("Failed to update avatar");

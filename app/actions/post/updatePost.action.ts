@@ -43,8 +43,8 @@ export async function updatePostAction(ID: string, formData: FormData) {
       { new: true }
     );
 
-    revalidateTag("user-posts");
-    revalidateTag("discover");
+    revalidateTag("user-posts", "default");
+    revalidateTag("discover", "default");
 
     return successResponse("Post updated successfully!");
   } catch (error) {

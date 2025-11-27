@@ -39,8 +39,8 @@ export async function addPostAction(formData: FormData) {
       ...data,
     });
 
-    revalidateTag("user-posts");
-    revalidateTag("discover");
+    revalidateTag("user-posts", "default");
+    revalidateTag("discover", "default");
 
     return successResponse(
       "Post added successfully to your profile and discover page!"

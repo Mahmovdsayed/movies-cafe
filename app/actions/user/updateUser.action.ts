@@ -44,7 +44,7 @@ export async function updateUserAction(formData: FormData) {
       new: true,
     });
 
-    revalidateTag(`user-info`);
+    revalidateTag(`user-info`, "default");
     return successResponse("Profile updated successfully");
   } catch (error) {
     await errResponse("Failed to update user");

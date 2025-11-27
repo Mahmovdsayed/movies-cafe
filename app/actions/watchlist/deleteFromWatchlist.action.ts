@@ -14,7 +14,7 @@ export async function deleteFromWatchlist(ID: string) {
 
     const [_, user] = await Promise.all([connectToDatabase(), authorizeUser()]);
     if (!user || "error" in user) return user;
-    
+
     const currentUser = await User.findById(user.id);
     if (!currentUser)
       return errResponse("You must be logged in to remove from watchlist");
@@ -36,7 +36,7 @@ export async function deleteFromWatchlist(ID: string) {
 
     if (!watchlist) return errResponse("This item is not in your watchlist");
 
-    revalidateTag("user-watchlist");
+    revalidateTag("user-watchlist", "default");
 
     return successResponse("Removed from your watchlist!");
   } catch (error) {
