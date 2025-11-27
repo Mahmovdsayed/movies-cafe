@@ -19,8 +19,8 @@ dir = ".bun-cache"
 # Enable hot reloading
 hot = true
 
-# Shell to use for scripts
-shell = "sh"
+# Shell to use for scripts (only 'bun' or 'system' are supported)
+shell = "bun"
 
 [test]
 # Test configuration
