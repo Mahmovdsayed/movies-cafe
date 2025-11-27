@@ -1,0 +1,27 @@
+# Bun Configuration
+# https://bun.sh/docs/runtime/bunfig
+
+[install]
+# Use exact versions for reproducible builds
+exact = true
+
+# Enable auto-install for missing packages
+auto = true
+
+# Optimize package installation
+registry = "https://registry.npmjs.org/"
+
+[install.cache]
+# Enable caching for faster installs
+dir = ".bun-cache"
+
+[run]
+# Enable hot reloading
+hot = true
+
+# Shell to use for scripts
+shell = "sh"
+
+[test]
+# Test configuration
+preload = []

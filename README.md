@@ -86,8 +86,16 @@ movies-cafe/
 
 2.  **Install dependencies**
 
+    Using npm:
+
     ```bash
     npm install
+    ```
+
+    Or using Bun (faster):
+
+    ```bash
+    bun install
     ```
 
 3.  **Environment Setup**
@@ -109,14 +117,26 @@ movies-cafe/
     | `NODE_ENV`                          | Environment mode (`development` or `production`) |
 
 4.  **Run Development Server**
+
+    Using npm:
+
     ```bash
     npm run dev
     ```
+
+    Or using Bun (faster):
+
+    ```bash
+    bun run bun:dev
+    ```
+
     Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ---
 
 ## 📜 Scripts
+
+### npm Scripts
 
 | Command         | Description                                  |
 | :-------------- | :------------------------------------------- |
@@ -124,6 +144,35 @@ movies-cafe/
 | `npm run build` | Builds the application for production        |
 | `npm run start` | Starts the production server                 |
 | `npm run lint`  | Runs ESLint to check for code quality issues |
+
+### Bun Scripts (Faster Alternative)
+
+| Command             | Description                            |
+| :------------------ | :------------------------------------- |
+| `bun run bun:dev`   | Starts the development server with Bun |
+| `bun run bun:build` | Builds the application for production  |
+| `bun run bun:start` | Starts the production server with Bun  |
+
+---
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+This project is configured to use **Bun** by default on Vercel for faster builds and deployments.
+
+1. **Push to GitHub/GitLab/Bitbucket**
+2. **Import to Vercel**: [vercel.com/new](https://vercel.com/new)
+3. **Configure Environment Variables**: Add all required variables from the table above
+4. **Deploy**: Vercel will automatically use Bun (configured in `vercel.json`)
+
+**Build Configuration** (automatically applied):
+
+- Install Command: `bun install`
+- Build Command: `bun run bun:build`
+- Output Directory: `.next`
+
+The `vercel.json` file ensures Bun is used by default, providing 3-5x faster builds compared to npm.
 
 ---
 
