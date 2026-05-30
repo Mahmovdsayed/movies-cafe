@@ -7,7 +7,6 @@ import NavBar from "@/components/layout/NavBar";
 import MainFooter from "@/components/layout/Footer";
 import { Profile } from "@/types/profile.types";
 import { getUserData } from "@/helpers/fetcher";
-import SmoothScroll from "@/components/motion/SmoothScroll";
 import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({
@@ -96,13 +95,11 @@ export default async function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased overflow-x-hidden`}>
         <Providers>
-          <SmoothScroll>
             <NavBar user={profile} />
             {children}
             <Analytics />
             <FooterIsland />
             <MainFooter />
-          </SmoothScroll>
         </Providers>
       </body>
     </html>
