@@ -12,6 +12,7 @@ import { getGenres } from "@/functions/getGenres"
 import { cardNotFoundImage } from "@/constant/statics";
 import AddTo from "../addTo/AddTo";
 import { useAppSelector } from "@/redux/hook";
+import WatchNowButton from "../buttons/WatchNowButton";
 
 interface IProps {
     data: MovieType
@@ -26,8 +27,14 @@ const MoviesCard = ({ data }: IProps) => {
     }
 
 
-    const imgSrcBanner = data.backdrop_path == null ? cardNotFoundImage : `${TMDB_CONFIG.API_IMAGE_URL}${imageSize}${data.backdrop_path}`;
+    const imgSrcBanner = data.backdrop_path == null
+        ? cardNotFoundImage
+        : data.backdrop_path.startsWith("http")
+            ? data.backdrop_path.replace("/original/", `/${imageSize}/`)
+            : `${TMDB_CONFIG.API_IMAGE_URL}${imageSize}${data.backdrop_path}`;
     const truncatedOverview = truncateText(data.overview, 150);
+
+    const genresText = typeof data.genre_ids === 'string' ? data.genre_ids : getGenres(data.genre_ids);
 
     return <>
         <Card isPressable onPress={handleClick} className="w-full h-full z-0!" shadow="sm" radius="lg">
@@ -60,7 +67,7 @@ const MoviesCard = ({ data }: IProps) => {
                         </Chip>
                     }
                 </div>
-                <span className="text-sm text-default-500 text-wrap mb-3 mt-1">{getGenres(data.genre_ids)}</span>
+                <span className="text-sm text-default-500 text-wrap mb-3 mt-1">{genresText}</span>
                 <p className="text-wrap text-tiny md:text-sm text-default-600">{truncatedOverview}</p>
             </CardBody>
             <CardFooter className="flex justify-between items-center gap-2">
@@ -78,6 +85,7 @@ const MoviesCard = ({ data }: IProps) => {
                             }
                         }
                         Ai={false} />
+                    <WatchNowButton id={String(data.id)} type="movie" size="sm" isIconOnly={true} />
                 </div>
                 <div className="space-x-2">
                     {data.release_date &&

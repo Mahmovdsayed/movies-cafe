@@ -1,6 +1,6 @@
 'use client'
 
-import { Chip, Image } from "@heroui/react";
+import { Button, Chip, Image } from "@heroui/react";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { IoIosStar, IoIosTimer } from "react-icons/io";
@@ -8,6 +8,7 @@ import { MdOutlineLanguage } from "react-icons/md";
 import AddTo from "../addTo/AddTo";
 import { cardNotFoundImage } from "@/constant/statics";
 import { useAppSelector } from "@/redux/hook";
+import WatchNowButton from "../buttons/WatchNowButton";
 
 interface IProps {
     banner: string;
@@ -67,6 +68,13 @@ const MovieHeader = ({ type, id, banner, title, description, poster, genres, run
                                     movieReleaseDate: release_date,
                                 }}
                                 Ai={description && poster && title && banner ? true : false} />
+                            <WatchNowButton
+                                id={id}
+                                type={type}
+                                size="md"
+                                showLabel={true}
+                                className="font-semibold px-4"
+                            />
                         </div>
 
                         <div className="flex flex-wrap justify-start  lg:justify-start gap-x-2 gap-y-3 mt-8 text-sm md:text-base">

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-  theme: "blackWhite",
+  theme: "default",
 };
 
 const appearanceSlice = createSlice({
